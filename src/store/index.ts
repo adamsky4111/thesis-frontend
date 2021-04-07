@@ -1,11 +1,26 @@
 import Vue from "vue";
-import Vuex from "vuex";
+import Vuex, { StoreOptions } from "vuex";
+import { RootState } from "./types";
+import { auth } from "./modules/auth";
+import createPersistedState from "vuex-persistedstate";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
+const store: StoreOptions<RootState> = {
+  state: {
+    version: "1.0",
+  },
   mutations: {},
   actions: {},
-  modules: {},
-});
+  plugins: [
+    createPersistedState({
+      key: "vuex",
+      paths: ["auth"],
+    }),
+  ],
+  modules: {
+    auth,
+  },
+};
+
+export default new Vuex.Store<RootState>(store);

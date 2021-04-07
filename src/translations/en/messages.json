@@ -1,0 +1,16 @@
+{
+  "register": {
+    "header": "Register"
+  },
+  "user": {
+    "username": "Username",
+    "firstName": "Firstname",
+    "lastName": "Lastname",
+    "password": "Password",
+    "repeatPassword": "Repeat password",
+    "email": "Email address",
+    "nick": "Nick",
+    "country": "Country",
+    "about": "About"
+  }
+}

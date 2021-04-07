@@ -1,0 +1,17 @@
+{
+  "login": "Logowanie",
+  "register": {
+    "header": "Rejestracja"
+  },
+  "user": {
+    "username": "Nazwa użytkownika",
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "password": "Hasło",
+    "repeatPassword": "Powtórz hasło",
+    "email": "Email",
+    "nick": "Identyfikator",
+    "country": "Kraj",
+    "about": "O mnie"
+  }
+}

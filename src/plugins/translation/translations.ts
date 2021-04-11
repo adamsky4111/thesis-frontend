@@ -1,4 +1,4 @@
-import messages from "./locale";
+import messages from "./locale.js";
 
 export default {
   install(Vue) {

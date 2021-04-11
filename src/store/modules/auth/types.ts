@@ -1,3 +1,5 @@
+import { UserModel } from "@/model/UserModel";
+
 export enum MutationTypes {
   SET_USER = "SET_USER",
   SET_TOKEN = "SET_TOKEN",

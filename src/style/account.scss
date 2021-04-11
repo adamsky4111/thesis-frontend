@@ -1,0 +1,47 @@
+@import "variables";
+
+$columns: 2;
+
+.account {
+  &-information {
+    margin-top: 20px;
+    font-size: 1.2em;
+    padding: 7px 15px 30px;
+    border: 1px solid $standard-border;
+    background-color: $standard-fill;
+    width: 500px;
+    table {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    tbody {
+      display: flex;
+      position: relative;
+      align-items: stretch;
+      border: 1px solid black;
+    }
+    tr {
+      flex-basis: calc(100% / #{$columns});
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      padding: 5px 10px;
+      + tr {
+        border-left: 1px solid $standard-border;
+      }
+
+    }
+    th, td {
+      flex-basis: 100%;
+      display: flex;
+      padding: 17px 2px;
+      border-bottom: $standard-border 3px solid;
+    }
+    th {
+      font-weight: bold;
+      justify-content: flex-end;
+    }
+  }
+}

@@ -1,14 +1,20 @@
 import { IModel } from "@/model/IModel";
 
 export class UserModel implements IModel {
-  public username?: string;
-  public email?: string;
-  public password?: string;
-  public firstName?: string;
-  public lastName?: string;
-  public nick?: string;
-  public country?: string;
-  public about?: string;
+  public username = "";
+  public email = "";
+  public password = "";
+  public firstName = "";
+  public lastName = "";
+  public nick = "";
+  public country = "";
+  public about = "";
+
+  public constructor(data?: Record<any, any>) {
+    if (data !== undefined) {
+      Object.assign(this, data);
+    }
+  }
 
   public createArrayParams(): Record<never, string> {
     return {

@@ -9,7 +9,7 @@ export enum ActionTypes {
 }
 
 export interface AuthState {
-  user: Record<never, never>;
+  user: UserModel;
   token: string | null;
   roles: Array<string>;
 }

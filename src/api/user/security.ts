@@ -1,5 +1,6 @@
 import axios from "@/plugins/axios";
 import { AxiosResponse } from "axios";
+import { UserModel } from "@/model/UserModel";
 
 const enum urls {
   Login = "/api/login_check",
@@ -12,7 +13,7 @@ const login = (
   params
 ): Promise<
   AxiosResponse<{
-    user: Record<never, never>;
+    user: UserModel;
     token: string;
     roles: Array<string>;
   }>

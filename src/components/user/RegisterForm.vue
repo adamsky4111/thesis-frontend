@@ -122,15 +122,15 @@ import api from "@/api/user";
 
       console.log(valid);
       if (valid) {
-        api
-          .register(this.$data.form.model.createArrayParams())
-          .then((response) => {
+        api.SECURITY.login(this.$data.form.model.createArrayParams()).then(
+          (response) => {
             if (response.status) {
               console.log("success");
             } else {
               console.log("fail");
             }
-          });
+          }
+        );
       }
     },
   },

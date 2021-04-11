@@ -1,3 +1,5 @@
+import { UserModel } from "@/model/UserModel";
+
 export enum MutationTypes {
   SET_USER = "SET_USER",
   SET_TOKEN = "SET_TOKEN",
@@ -8,8 +10,20 @@ export enum ActionTypes {
   LOGIN = "LOGIN",
 }
 
+export enum GetterTypes {
+  GET_USER = "GET_USER",
+  GET_TOKEN = "GET_TOKEN",
+  GET_ROLES = "GET_ROLES",
+}
+
+export const Getters = {
+  GET_USER: "GET_USER",
+  GET_TOKEN: "GET_TOKEN",
+  GET_ROLES: "GET_ROLES",
+};
+
 export interface AuthState {
-  user: Record<never, never>;
+  user: UserModel;
   token: string | null;
   roles: Array<string>;
 }

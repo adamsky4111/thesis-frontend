@@ -12,6 +12,18 @@
     "email": "Email",
     "nick": "Identyfikator",
     "country": "Kraj",
-    "about": "O mnie"
+    "about": "O mnie",
+    "logged": "Zalogowany"
+  },
+  "account": {
+    "edit": {
+      "header": "Edycja Profilu"
+    },
+    "information": "Informacje o koncie",
+    "menu": {
+      "home": "Home",
+      "my_account": "Moje konto",
+      "logout": "Wyloguj"
+    }
   }
 }

@@ -69,9 +69,9 @@ const namespace: string = ModulesNamespaces.AUTH;
   },
 })
 export default class LoginForm extends Vue {
-  @Action(ActionTypes.LOGIN, { namespace }) login: Promise;
+  @Action(ActionTypes.LOGIN, { namespace }) login: any;
 
-  async submit(): void {
+  async submit(): Promise<any> {
     const valid = (this.$refs.loginForm as VForm).validate();
     if (valid) {
       const test = await this.login(this.$data.form.model);

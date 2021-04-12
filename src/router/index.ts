@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import routes from "@/router/routes/index";
 import store from "@/store";
+import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
 
 Vue.use(VueRouter);
 
@@ -12,12 +13,10 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  console.log();
-  console.log(to.matched.some((record) => console.log(record)));
   if (to.matched.some((record) => record.meta.auth)) {
     if (to.matched.some((record) => record.meta.role)) {
       // if required role is specified
-      const userRoles = store.getters["auth/roles"];
+      const userRoles = store.getters[GetterTypes.GET_ROLES];
 
       const userHasRole = to.matched.some((record) => {
         let access = false;

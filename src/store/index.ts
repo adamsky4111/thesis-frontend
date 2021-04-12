@@ -23,4 +23,6 @@ const store: StoreOptions<RootState> = {
   },
 };
 
-export default new Vuex.Store<RootState>(store);
+const createdStore = new Vuex.Store<RootState>(store);
+
+export default createdStore;

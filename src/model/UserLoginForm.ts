@@ -7,8 +7,8 @@ export class UserLoginForm implements IForm {
   public saved: boolean;
   public valid: boolean;
 
-  public constructor() {
-    this.model = new LoginModel();
+  public constructor(existingModel?: LoginModel) {
+    this.model = existingModel === undefined ? new LoginModel() : existingModel;
     this.saved = false;
     this.valid = false;
   }

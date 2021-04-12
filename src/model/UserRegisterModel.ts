@@ -6,8 +6,8 @@ export class UserRegisterModel extends UserModel implements IValidator {
   public repeatPassword?: string;
   public validator: Record<never, Array<never>>;
 
-  constructor() {
-    super();
+  public constructor(data?: Record<any, any>) {
+    super(data);
     this.validator = {
       email: validators.email,
       username: validators.empty.concat(validators.noSpace),

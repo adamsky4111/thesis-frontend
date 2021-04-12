@@ -1,4 +1,6 @@
 import apiAxios from "axios";
+import createdStore from "../store";
+import { GetterTypes } from "../store/modules/auth/AuthStoreTypes";
 
 const config = {
   headers: {
@@ -10,16 +12,17 @@ const config = {
 
 const axios = apiAxios.create(config);
 
-axios.interceptors.request.use(
-  function (config) {
-    // Do something before request is sent
-    return config;
-  },
-  function (error) {
-    // Do something with request error
-    return Promise.reject(error);
+const requestOnFulfilled = (config) => {
+  const token = createdStore.getters[GetterTypes.GET_TOKEN];
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-);
+
+  return config;
+};
+
+axios.interceptors.request.use(requestOnFulfilled);
 
 // Add a response interceptor
 axios.interceptors.response.use(

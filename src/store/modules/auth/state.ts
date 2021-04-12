@@ -1,7 +1,8 @@
 import { AuthState } from "@/store/modules/auth/types";
+import { UserModel } from "@/model/UserModel";
 
 export const state: AuthState = {
-  user: {},
+  user: new UserModel(),
   token: null,
   roles: [],
 };

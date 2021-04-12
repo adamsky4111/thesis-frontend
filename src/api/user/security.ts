@@ -5,6 +5,7 @@ import { UserModel } from "@/model/UserModel";
 const enum urls {
   Login = "/api/login_check",
   Register = "/api/security/register",
+  Refresh = "/api/token/refresh",
   Verify = "/api/security/verify",
   RestorePassword = "/api/security/restore-password",
 }
@@ -15,6 +16,7 @@ const login = (
   AxiosResponse<{
     user: UserModel;
     token: string;
+    refresh_token: string;
     roles: Array<string>;
   }>
 > => {
@@ -25,4 +27,10 @@ const register = (params): Promise<AxiosResponse<never>> => {
   return axios.post(urls.Register, params);
 };
 
-export default { login, register };
+const refresh = (
+  params
+): Promise<AxiosResponse<{ refresh_token: string; token: string }>> => {
+  return axios.post(urls.Refresh, params);
+};
+
+export default { login, register, refresh };

@@ -3,6 +3,15 @@ import { UserRole } from "@/router/types";
 
 const user: Array<RouteConfig> = [
   {
+    path: "/logout",
+    name: "Logout",
+    component: () => import("@/views/LogoutView.vue"),
+    meta: {
+      auth: true,
+      layout: Layout.DEFAULT,
+    },
+  },
+  {
     path: "/home",
     name: "Home",
     component: () => import("@/views/Home.vue"),

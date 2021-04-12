@@ -6,10 +6,12 @@ export class UserProfileForm implements IForm {
   public model: IModel;
   public saved: boolean;
   public valid: boolean;
+  public sending: boolean;
 
   public constructor() {
     this.model = new UserProfileModel();
     this.saved = false;
     this.valid = false;
+    this.sending = false;
   }
 }

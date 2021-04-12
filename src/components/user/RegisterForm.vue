@@ -1,10 +1,10 @@
 <template>
-  <v-card>
+  <v-card max-width="500">
     <v-card-title> </v-card-title>
     <v-card-text>
       <v-container>
         <v-row>
-          <v-col align="center" justify="center">
+          <v-col align="center">
             <h1>{{ $translation("register.header") }}</h1>
 
             <v-form
@@ -14,82 +14,98 @@
               v-model="form.valid"
               lazy-validation
             >
-              <v-text-field
-                :label="$translation('user.username')"
-                :rules="rules.username"
-                required
-                outlined
-                v-model="user.username"
-                lazy-validation
-              >
-              </v-text-field>
-              <v-text-field
-                :label="$translation('user.email')"
-                :rules="rules.email"
-                required
-                outlined
-                v-model="user.email"
-              >
-              </v-text-field>
-              <v-text-field
-                :label="$translation('user.password')"
-                :rules="rules.password"
-                required
-                outlined
-                v-model="user.password"
-              >
-              </v-text-field>
-              <v-text-field
-                :label="$translation('user.repeatPassword')"
-                :rules="rules.repeatPassword"
-                required
-                outlined
-                v-model="user.repeatPassword"
-              >
-              </v-text-field>
-              <v-divider class="mb-6"></v-divider>
-              <v-text-field
-                :label="$translation('user.firstName')"
-                :rules="rules.firstName"
-                outlined
-                v-model="user.firstName"
-              >
-              </v-text-field>
-              <v-text-field
-                :label="$translation('user.lastName')"
-                :rules="rules.lastName"
-                outlined
-                v-model="user.lastName"
-              >
-              </v-text-field>
-              <v-text-field
-                :label="$translation('user.nick')"
-                :rules="rules.nick"
-                outlined
-                v-model="user.nick"
-              >
-              </v-text-field>
-              <v-text-field
-                :label="$translation('user.country')"
-                :rules="rules.country"
-                outlined
-                v-model="user.country"
-              >
-              </v-text-field>
-              <v-textarea
-                :label="$translation('user.about')"
-                :rules="rules.about"
-                outlined
-                v-model="user.about"
-              >
-              </v-textarea>
+              <div class="register-form-required">
+                <v-text-field
+                  :label="$translation('user.username')"
+                  :rules="rules.username"
+                  required
+                  outlined
+                  v-model="user.username"
+                  lazy-validation
+                >
+                </v-text-field>
+                <v-text-field
+                  :label="$translation('user.email')"
+                  :rules="rules.email"
+                  required
+                  outlined
+                  v-model="user.email"
+                >
+                </v-text-field>
+                <v-text-field
+                  :label="$translation('user.password')"
+                  :rules="rules.password"
+                  required
+                  outlined
+                  v-model="user.password"
+                >
+                </v-text-field>
+                <v-text-field
+                  :label="$translation('user.repeatPassword')"
+                  :rules="rules.repeatPassword"
+                  required
+                  outlined
+                  v-model="user.repeatPassword"
+                >
+                </v-text-field>
+                <v-divider class="mb-6"></v-divider>
+                <v-checkbox
+                  v-model="showPersonal"
+                  :label="$translation('user.personal')"
+                />
+              </div>
+              <div v-if="showPersonal" class="register-form-extra">
+                <v-text-field
+                  :label="$translation('user.firstName')"
+                  :rules="rules.firstName"
+                  outlined
+                  v-model="user.firstName"
+                >
+                </v-text-field>
+                <v-text-field
+                  :label="$translation('user.lastName')"
+                  :rules="rules.lastName"
+                  outlined
+                  v-model="user.lastName"
+                >
+                </v-text-field>
+                <v-text-field
+                  :label="$translation('user.nick')"
+                  :rules="rules.nick"
+                  outlined
+                  v-model="user.nick"
+                >
+                </v-text-field>
+                <v-text-field
+                  :label="$translation('user.country')"
+                  :rules="rules.country"
+                  outlined
+                  v-model="user.country"
+                >
+                </v-text-field>
+                <v-textarea
+                  :label="$translation('user.about')"
+                  :rules="rules.about"
+                  outlined
+                  v-model="user.about"
+                >
+                </v-textarea>
+              </div>
             </v-form>
           </v-col>
         </v-row>
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="blue darken-1" text @click="submit"> ZAPISZ </v-btn>
+      <v-container>
+        <v-row>
+          <v-col align="center" justify="center">
+            <v-btn color="warning" dark text @click="submit">
+              {{ $translation("user.register") }}
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-actions>
   </v-card>
 </template>
@@ -105,6 +121,7 @@ import api from "@/api/user";
   components: {},
   data: () => ({
     form: new UserRegisterForm(),
+    showPersonal: false,
   }),
   computed: {
     user() {

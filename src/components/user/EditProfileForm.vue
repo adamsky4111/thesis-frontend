@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card max-width="600">
     <v-card-title> </v-card-title>
     <v-card-text>
       <v-container>
@@ -7,7 +7,7 @@
           <v-col align="center" justify="center">
             <h1>{{ $translation("account.edit.header") }}</h1>
 
-            <div class="account-edit">
+            <div class="account-edit-form">
               <v-form
                 ref="profileForm"
                 class="mt-12"
@@ -58,23 +58,24 @@
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="blue darken-1" text @click="submit"> ZAPISZ </v-btn>
+      <v-btn color="blue darken-1" text @click="submit">
+        {{ $translation("action.save") }}
+      </v-btn>
     </v-card-actions>
-    <account-information :user="userData" />
+    <loading-bar :display="this.form.sending" />
   </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import api from "@/api/user";
+import LoadingBar from "@/components/common/LoadingBar.vue";
 import { VForm } from "@/type/Form";
 import { UserRegisterForm } from "@/model/UserRegisterForm";
-import AccountInformation from "@/components/user/AccountInformation.vue";
-import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
+import { ActionTypes, GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
 import { UserRegisterModel } from "@/model/UserRegisterModel";
 
 @Component({
-  components: { AccountInformation },
+  components: { LoadingBar },
   props: {
     editable: {
       type: Boolean,
@@ -100,18 +101,13 @@ import { UserRegisterModel } from "@/model/UserRegisterModel";
     },
   },
   methods: {
-    submit() {
+    async submit() {
       const valid = (this.$refs.profileForm as VForm).validate();
       if (valid) {
-        api.ACCOUNT.edit(this.$data.form.model.createArrayParams()).then(
-          (response) => {
-            if (response.status) {
-              console.log("success");
-            } else {
-              console.log("fail");
-            }
-          }
-        );
+        this.form.sending = true;
+        await this.$store.dispatch(ActionTypes.EDIT_ACCOUNT, this.form.model);
+        this.form.sending = false;
+        this.$emit("onEdit");
       }
     },
   },

@@ -3,11 +3,13 @@
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
-          <img src="https://randomuser.me/api/portraits/women/81.jpg" />
+          <img :src="avatar || ''" />
         </v-list-item-avatar>
 
         <v-list-item-content>
-          <v-list-item-title>{{ fullName }}</v-list-item-title>
+          <v-list-item-title
+            >{{ user.firstName }} {{ user.lastName }}</v-list-item-title
+          >
           <v-list-item-subtitle>{{
             $translation("user.logged")
           }}</v-list-item-subtitle>
@@ -24,7 +26,11 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
+          <v-list-item-title
+            ><router-link :to="item.to">{{
+              item.title
+            }}</router-link></v-list-item-title
+          >
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -33,7 +39,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
+import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
 
 @Component({
   components: {},
@@ -43,27 +49,47 @@ import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
         {
           title: this.$translation("account.menu.home"),
           icon: "mdi-home-city",
+          to: "/",
         },
         {
           title: this.$translation("account.menu.my_account"),
           icon: "mdi-account",
+          to: "/account",
+        },
+        {
+          title: this.$translation("account.menu.favorite_channels"),
+          icon: "mdi-star-settings",
+          to: "/favorite-channels",
+        },
+        {
+          title: this.$translation("account.menu.my_channels"),
+          icon: "mdi-movie-open-settings",
+          to: "/favorite-channels",
+        },
+        {
+          title: this.$translation("account.menu.channel_configs"),
+          icon: "mdi-cog-refresh",
+          to: "/favorite-channels",
         },
         {
           title: this.$translation("account.menu.logout"),
           icon: "mdi-logout",
+          to: "/logout",
         },
       ],
-      user: this.$store.getters[GetterTypes.GET_USER],
     };
   },
   computed: {
-    fullName() {
-      return this.$data.user.firstName + " " + this.$data.user.lastName;
+    user() {
+      return this.$store.getters[GetterTypes.GET_USER];
+    },
+    avatar() {
+      return this.user.avatar;
     },
   },
   methods: {
-    test() {
-      return this.$translation("test");
+    logout() {
+      this.$store.dispatch(ActionTypes.LOGOUT);
     },
   },
 })

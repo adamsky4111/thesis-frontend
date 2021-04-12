@@ -9,7 +9,7 @@ $columns: 2;
     padding: 7px 15px 30px;
     border: 1px solid $standard-border;
     background-color: $standard-fill;
-    width: 500px;
+    width: 100%;
     table {
       width: 100%;
       display: flex;
@@ -34,6 +34,7 @@ $columns: 2;
 
     }
     th, td {
+      width: 200px;
       flex-basis: 100%;
       display: flex;
       padding: 17px 2px;
@@ -43,5 +44,20 @@ $columns: 2;
       font-weight: bold;
       justify-content: flex-end;
     }
+    td {
+
+      display: table-cell;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  &-edit, &-show {
+    margin: 100px
+  }
+
+  &-avatar {
+    margin-bottom: 5px;
   }
 }

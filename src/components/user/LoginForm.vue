@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card max-width="500">
     <v-card-title> </v-card-title>
     <v-card-text>
       <v-container>
@@ -46,11 +46,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { UserLoginForm } from "@/model/UserLoginForm";
 import { VForm } from "@/type/Form";
-import { Action } from "vuex-class";
-import { ModulesNamespaces } from "@/store/types";
-import { ActionTypes } from "@/store/modules/auth/types";
-
-const namespace: string = ModulesNamespaces.AUTH;
+import { ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
 
 @Component({
   components: {},
@@ -69,13 +65,16 @@ const namespace: string = ModulesNamespaces.AUTH;
   },
 })
 export default class LoginForm extends Vue {
-  @Action(ActionTypes.LOGIN, { namespace }) login: any;
-
   async submit(): Promise<any> {
     const valid = (this.$refs.loginForm as VForm).validate();
     if (valid) {
-      const test = await this.login(this.$data.form.model);
-      console.log(test);
+      const success = await this.$store.dispatch(
+        ActionTypes.LOGIN,
+        this.$data.form.model
+      );
+      if (success) {
+        await this.$router.push("/account");
+      }
     }
   }
 }

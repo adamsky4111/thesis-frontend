@@ -4,7 +4,7 @@ const anonymous: Array<RouteConfig> = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("@/components/user/LoginForm.vue"),
+    component: () => import("@/views/LoginView.vue"),
     meta: {
       auth: false,
       role: [],
@@ -13,7 +13,7 @@ const anonymous: Array<RouteConfig> = [
   {
     path: "/register",
     name: "Register",
-    component: () => import("@/components/user/RegisterForm.vue"),
+    component: () => import("@/views/RegisterView.vue"),
     meta: {
       auth: false,
       role: [],

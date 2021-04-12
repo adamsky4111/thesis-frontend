@@ -6,11 +6,13 @@ export class UserRegisterForm implements IForm {
   public model: IModel;
   public saved: boolean;
   public valid: boolean;
+  public sending: boolean;
 
   public constructor(existingModel?: UserRegisterModel) {
     this.model =
       existingModel === undefined ? new UserRegisterModel() : existingModel;
     this.saved = false;
     this.valid = false;
+    this.sending = false;
   }
 }

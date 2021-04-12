@@ -9,6 +9,7 @@ export class UserModel implements IModel {
   public nick = "";
   public country = "";
   public about = "";
+  public avatar = "";
 
   public constructor(data?: Record<any, any>) {
     if (data !== undefined) {

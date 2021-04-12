@@ -1,4 +1,7 @@
 {
+  "nav": {
+    "title": "ProStream"
+  },
   "login": "Logowanie",
   "register": {
     "header": "Rejestracja"
@@ -13,7 +16,10 @@
     "nick": "Identyfikator",
     "country": "Kraj",
     "about": "O mnie",
-    "logged": "Zalogowany"
+    "logged": "Zalogowany",
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
+    "personal": "Informacje personalne"
   },
   "account": {
     "edit": {
@@ -23,7 +29,13 @@
     "menu": {
       "home": "Home",
       "my_account": "Moje konto",
+      "favorite_channels": "Ulubione kanały",
+      "my_channels": "Moje kanały",
+      "channel_configs": "Ustawienia kanałów",
       "logout": "Wyloguj"
     }
+  },
+  "action": {
+    "save": "Zapisz zmiany"
   }
 }

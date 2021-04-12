@@ -1,14 +1,26 @@
 <template>
-  <v-card>
+  <v-card max-width="600">
     <v-card-title> </v-card-title>
     <v-card-text>
       <v-container>
         <v-row>
           <v-col align="center">
-            <h2 class="text-center">
+            <h1 class="text-center">
               {{ $translation("account.information") }}
-            </h2>
+            </h1>
             <div class="account-information">
+              <v-avatar class="account-avatar" color="grey" size="300" tile>
+                <v-img :src="user.avatar"></v-img>
+              </v-avatar>
+              <v-btn
+                class="d-block"
+                fab
+                dark
+                color="indigo"
+                @click="changeAvatar"
+              >
+                <v-icon dark> mdi-plus </v-icon>
+              </v-btn>
               <table>
                 <tr>
                   <th>{{ $translation("user.username") }}</th>
@@ -28,7 +40,14 @@
                 </tr>
               </table>
               <div class="text-right">
-                <v-btn class="mx-2" fab dark large color="cyan">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  large
+                  color="cyan"
+                  @click="openEditor"
+                >
                   <v-icon dark> mdi-pencil </v-icon>
                 </v-btn>
               </div>
@@ -38,21 +57,53 @@
       </v-container>
     </v-card-text>
     <v-card-actions> </v-card-actions>
+    <avatar-changer
+      :display="avatarDialog"
+      :avatar="user.avatar"
+      :loading="loading"
+      @close="closeAvatarChanger"
+      @accept="uploadAvatar"
+    />
+    <loading-bar :display="loading" />
   </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { UserModel } from "@/model/UserModel";
+import AvatarChanger from "@/components/user/AvatarChanger.vue";
+import { ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
+import LoadingBar from "@/components/common/LoadingBar.vue";
 
 @Component({
   props: {
     user: UserModel,
   },
-  components: {},
+  components: { AvatarChanger, LoadingBar },
+
+  data: function () {
+    return {
+      avatarDialog: false,
+      loading: false,
+    };
+  },
   methods: {
     openEditor() {
       this.$emit("displayEdit", true);
+    },
+    changeAvatar() {
+      this.avatarDialog = true;
+    },
+    closeAvatarChanger() {
+      this.avatarDialog = false;
+    },
+    async uploadAvatar(file) {
+      this.loading = true;
+      let form = new FormData();
+      form.append("file", file);
+      await this.$store.dispatch(ActionTypes.CHANGE_AVATAR, form);
+      this.loading = false;
+      this.closeAvatarChanger();
     },
   },
 })

@@ -57,9 +57,10 @@ export const actions: ActionTree<State, RootState> & Actions = {
     await api.SECURITY.refresh({ refresh_token: state.refreshToken }).then(
       (response) => {
         if (response.status) {
-          console.log(response.data.refresh_token);
           commit(MutationTypes.SET_REFRESH_TOKEN, response.data.refresh_token);
           commit(MutationTypes.SET_TOKEN, response.data.token);
+        } else {
+          commit(MutationTypes.SET_TOKEN, null);
         }
       }
     );

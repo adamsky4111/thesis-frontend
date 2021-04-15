@@ -5,7 +5,7 @@ import { GetterTypes, ActionTypes } from "../store/modules/auth/AuthStoreTypes";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "http://localhost:1000",
   },
   baseURL: "http://localhost:1000/",
 };
@@ -26,7 +26,12 @@ const restoreTokenAndRepeatRequest = async (error) => {
   if (error.response.status === 401) {
     const originalRequest = error.config;
     await createdStore.dispatch(ActionTypes.REFRESH_TOKEN);
-    return axios(originalRequest);
+    const token = createdStore.getters[GetterTypes.GET_TOKEN];
+    if (token) {
+      return axios(originalRequest);
+    } else {
+      return error;
+    }
   }
 };
 

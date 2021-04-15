@@ -139,7 +139,7 @@ import api from "@/api/user";
 
       console.log(valid);
       if (valid) {
-        api.SECURITY.login(this.$data.form.model.createArrayParams()).then(
+        api.SECURITY.register(this.$data.form.model.createArrayParams()).then(
           (response) => {
             if (response.status) {
               console.log("success");

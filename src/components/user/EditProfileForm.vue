@@ -67,12 +67,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import LoadingBar from "@/components/common/LoadingBar.vue";
 import { VForm } from "@/type/Form";
 import { UserRegisterForm } from "@/model/UserRegisterForm";
 import { ActionTypes, GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
 import { UserRegisterModel } from "@/model/UserRegisterModel";
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({
   components: { LoadingBar },
@@ -82,16 +82,8 @@ import { UserRegisterModel } from "@/model/UserRegisterModel";
       default: true,
     },
   },
-  data: function () {
-    return {
-      form: new UserRegisterForm(
-        new UserRegisterModel(this.$store.getters[GetterTypes.GET_USER])
-      ),
-      userData: this.$store.getters[GetterTypes.GET_USER],
-    };
-  },
   computed: {
-    user() {
+    user(): UserRegisterModel {
       const form = this.$data.form;
       return form.model;
     },
@@ -100,19 +92,23 @@ import { UserRegisterModel } from "@/model/UserRegisterModel";
       return form.model.validator;
     },
   },
-  methods: {
-    async submit() {
-      const valid = (this.$refs.profileForm as VForm).validate();
-      if (valid) {
-        this.form.sending = true;
-        await this.$store.dispatch(ActionTypes.EDIT_ACCOUNT, this.form.model);
-        this.form.sending = false;
-        this.$emit("onEdit");
-      }
-    },
-  },
 })
-export default class EditProfileForm extends Vue {}
+export default class EditProfileForm extends Vue {
+  form = new UserRegisterForm(
+    new UserRegisterModel(this.$store.getters[GetterTypes.GET_USER])
+  );
+  userData = this.$store.getters[GetterTypes.GET_USER];
+
+  async submit(): Promise<void> {
+    const valid = (this.$refs.profileForm as VForm).validate();
+    if (valid) {
+      this.form.sending = true;
+      await this.$store.dispatch(ActionTypes.EDIT_ACCOUNT, this.form.model);
+      this.form.sending = false;
+      this.$emit("onEdit");
+    }
+  }
+}
 </script>
 <style scoped>
 .v-text-field {

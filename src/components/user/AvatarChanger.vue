@@ -47,7 +47,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { VForm } from "@/type/Form";
 
 @Component({
   components: {},
@@ -65,35 +66,27 @@ import { Component, Vue } from "vue-property-decorator";
       default: false,
     },
   },
-  data: function () {
-    return {
-      rules: [
-        (value) =>
-          !value ||
-          value.size < 2000000 ||
-          "Avatar size should be less than 2 MB!",
-      ],
-      files: [],
-      actualAvatar: this.avatar,
-    };
-  },
-  methods: {
-    onFileChange() {
-      this.actualAvatar = URL.createObjectURL(this.files);
-    },
-    close() {
-      this.$emit("close");
-    },
-    accept() {
-      const valid = this.$refs.avatarForm.validate();
-      if (valid) {
-        console.log("valid");
-        this.$emit("accept", this.files);
-      }
-    },
-  },
 })
-export default class AvatarChanger extends Vue {}
+export default class AvatarChanger extends Vue {
+  @Prop({ default: "" })
+  avatar!: string;
+  rules = [(value) => !value || value.size < 2000000];
+  files = [];
+  actualAvatar = this.avatar;
+
+  onFileChange(): void {
+    this.actualAvatar = URL.createObjectURL(this.files);
+  }
+  close(): void {
+    this.$emit("close");
+  }
+  accept(): void {
+    const valid = (this.$refs.avatarForm as VForm).validate();
+    if (valid) {
+      this.$emit("accept", this.files);
+    }
+  }
+}
 </script>
 <style scoped>
 .v-text-field {

@@ -33,4 +33,11 @@ const refresh = (
   return axios.post(urls.Refresh, params);
 };
 
-export default { login, register, refresh };
+const verify = (params: {
+  email: string;
+  token: string;
+}): Promise<AxiosResponse> => {
+  return axios.post(urls.Verify, params);
+};
+
+export default { login, register, refresh, verify };

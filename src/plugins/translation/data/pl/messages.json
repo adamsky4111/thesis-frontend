@@ -19,7 +19,12 @@
     "logged": "Zalogowany",
     "login": "Zaloguj",
     "register": "Zarejestruj",
-    "personal": "Informacje personalne"
+    "personal": "Informacje personalne",
+    "verify": {
+      "success": "Sukces, udało się zweryfikować konto, możesz teraz",
+      "success_link": "zalogować",
+      "fail": "Nie udało się zweryfikować konta"
+    }
   },
   "account": {
     "edit": {
@@ -37,5 +42,8 @@
   },
   "action": {
     "save": "Zapisz zmiany"
+  },
+  "app": {
+    "loading": "Ładowanie"
   }
 }

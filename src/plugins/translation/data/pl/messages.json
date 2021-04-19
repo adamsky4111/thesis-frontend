@@ -19,7 +19,23 @@
     "logged": "Zalogowany",
     "login": "Zaloguj",
     "register": "Zarejestruj",
-    "personal": "Informacje personalne"
+    "personal": "Informacje personalne",
+    "verify": {
+      "success": "Sukces, udało się zweryfikować konto, możesz teraz",
+      "success_link": "zalogować",
+      "fail": "Nie udało się zweryfikować konta"
+    },
+    "recovery_password": "Wyślij email do odzyskania hasła",
+    "recovery_info": "Nie masz dostępu do konta? Spróbuj odzyskać swoje dane logowania!",
+    "recovery": {
+      "success": "Udało się zmienić hasło, możesz już z niego korzystać",
+      "fail": "Nie udało się zmienić hasła",
+      "change_password": "Zmiana hasła",
+      "accept": "Zatwierdzam hasło",
+      "title": "Podaj swój email aby odzyskać hasło",
+      "loading": "Weryfikowanie/Wysyłanie e-maila",
+      "send": "Jeżeli konto zostało skojarzone z wpisanym adresem e-mail, powinien przyjść na wskazany adres link do odzyskania hasła."
+    }
   },
   "account": {
     "edit": {
@@ -37,5 +53,8 @@
   },
   "action": {
     "save": "Zapisz zmiany"
+  },
+  "app": {
+    "loading": "Ładowanie"
   }
 }

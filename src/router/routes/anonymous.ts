@@ -19,6 +19,24 @@ const anonymous: Array<RouteConfig> = [
       role: [],
     },
   },
+  {
+    path: "/verify",
+    name: "Verify",
+    component: () => import("@/views/VerifyView.vue"),
+    meta: {
+      auth: false,
+      role: [],
+    },
+  },
+  {
+    path: "/forgot-password",
+    name: "RecoveryPassword",
+    component: () => import("@/views/RestorePassword.vue"),
+    meta: {
+      auth: false,
+      role: [],
+    },
+  },
 ];
 
 export default anonymous;

@@ -3,7 +3,7 @@
     <template v-slot:prepend>
       <v-list-item two-line>
         <v-list-item-avatar>
-          <img :src="avatar || ''" />
+          <img :src="user.avatar || ''" />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -82,9 +82,6 @@ import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
   computed: {
     user() {
       return this.$store.getters[GetterTypes.GET_USER];
-    },
-    avatar() {
-      return this.user.avatar;
     },
   },
   methods: {

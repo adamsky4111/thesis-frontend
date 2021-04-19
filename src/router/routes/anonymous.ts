@@ -28,6 +28,15 @@ const anonymous: Array<RouteConfig> = [
       role: [],
     },
   },
+  {
+    path: "/forgot-password",
+    name: "RecoveryPassword",
+    component: () => import("@/views/RestorePassword.vue"),
+    meta: {
+      auth: false,
+      role: [],
+    },
+  },
 ];
 
 export default anonymous;

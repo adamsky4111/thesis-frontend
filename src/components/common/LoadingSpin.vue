@@ -13,7 +13,7 @@
               ></v-progress-circular>
             </v-col>
             <v-col cols="12">
-              {{ $translation("app.loading") }}
+              {{ text || this.$translation("app.loading") }}
             </v-col>
           </v-row>
         </v-container>
@@ -30,6 +30,10 @@ import { Component, Vue } from "vue-property-decorator";
     display: {
       type: Boolean,
       default: false,
+    },
+    text: {
+      type: String,
+      default: "",
     },
   },
 })

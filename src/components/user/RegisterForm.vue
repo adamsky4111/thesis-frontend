@@ -100,7 +100,7 @@
       <v-container>
         <v-row>
           <v-col align="center" justify="center">
-            <v-btn color="warning" dark text @click="submit">
+            <v-btn color="warning" dark @click="submit">
               {{ $translation("user.register") }}
             </v-btn>
           </v-col>

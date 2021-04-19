@@ -8,6 +8,7 @@ const enum urls {
   Refresh = "/api/token/refresh",
   Verify = "/api/security/verify",
   RestorePassword = "/api/security/restore-password",
+  RestorePasswordToken = "/api/security/restore-password/",
 }
 
 const login = (
@@ -40,4 +41,28 @@ const verify = (params: {
   return axios.post(urls.Verify, params);
 };
 
-export default { login, register, refresh, verify };
+const passwordRecovery = (params: {
+  email: string;
+}): Promise<AxiosResponse> => {
+  return axios.post(urls.RestorePassword, params);
+};
+
+const changePassword = (params: {
+  email: string;
+  password: string;
+  token: string;
+}): Promise<AxiosResponse> => {
+  return axios.post(urls.RestorePasswordToken + params.token, {
+    email: params.email,
+    password: params.password,
+  });
+};
+
+export default {
+  login,
+  register,
+  refresh,
+  verify,
+  passwordRecovery,
+  changePassword,
+};

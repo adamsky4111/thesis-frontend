@@ -2,6 +2,7 @@
   <div class="account-show">
     <v-row>
       <v-col align="center">
+        <h1>{{ $translation("account.my_account.header") }}</h1>
         <account-information :user="user" @displayEdit="goToAccountEdit" />
       </v-col>
     </v-row>

@@ -38,8 +38,28 @@
     }
   },
   "account": {
+    "settings": {
+      "header": "Ustawienia do kanałów",
+      "name": "Nazwa ustawienia",
+      "age_allowed": "Dozwolony wiek na transmisji",
+      "is_default": "Czy domyślne",
+      "set_default": "Ustaw jako domyślne",
+      "title_edit": "Edycja ustawienia {{ name }}",
+      "title_create": "Tworzenie nowego ustawienia",
+      "create": "Dodaj ustawienie",
+      "search": {
+        "name": "Wpisz nazwę",
+        "max": "Do",
+        "min": "Od",
+        "is_default": "Pokaż domyślne"
+      },
+      "submit": "Zatwierdzam"
+    },
     "edit": {
       "header": "Edycja Profilu"
+    },
+    "my_account": {
+      "header": "Moje konto"
     },
     "information": "Informacje o koncie",
     "menu": {
@@ -55,6 +75,12 @@
     "save": "Zapisz zmiany"
   },
   "app": {
-    "loading": "Ładowanie"
+    "loading": "Ładowanie",
+    "yes": "Tak",
+    "no": "Nie",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "action": "Akcje",
+    "rows_per_page": "Ilość wierszy na stronę"
   }
 }

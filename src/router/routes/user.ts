@@ -41,6 +41,16 @@ const user: Array<RouteConfig> = [
       layout: Layout.LOGGED_USER,
     },
   },
+  {
+    path: "/account/settings",
+    name: "account_settings",
+    component: () => import("@/views/Account/ChannelSettings.vue"),
+    meta: {
+      auth: true,
+      role: [UserRole.ROLE_USER],
+      layout: Layout.LOGGED_USER,
+    },
+  },
 ];
 
 export default user;

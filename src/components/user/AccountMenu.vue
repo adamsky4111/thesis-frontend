@@ -59,17 +59,17 @@ import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
         {
           title: this.$translation("account.menu.favorite_channels"),
           icon: "mdi-star-settings",
-          to: "/favorite-channels",
+          to: "/channels/favorite",
         },
         {
           title: this.$translation("account.menu.my_channels"),
           icon: "mdi-movie-open-settings",
-          to: "/favorite-channels",
+          to: "/channels",
         },
         {
           title: this.$translation("account.menu.channel_configs"),
           icon: "mdi-cog-refresh",
-          to: "/favorite-channels",
+          to: "/account/settings",
         },
         {
           title: this.$translation("account.menu.logout"),

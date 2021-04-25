@@ -2,7 +2,10 @@ import messages from "./locale.js";
 
 export default {
   install(Vue) {
-    Vue.prototype.$translation = function (key) {
+    Vue.prototype.$translation = function (
+      key,
+      params: Record<any, string> | null = null
+    ) {
       const locale = "pl";
       let message;
       try {
@@ -13,6 +16,12 @@ export default {
 
       if (message === undefined) {
         return key;
+      }
+
+      if (params !== null) {
+        for (const paramsKey in params) {
+          message = message.replace(`{{ ${paramsKey} }}`, params[paramsKey]);
+        }
       }
 
       return message;

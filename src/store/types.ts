@@ -4,4 +4,5 @@ export interface RootState {
 
 export enum ModulesNamespaces {
   AUTH = "auth",
+  account = "account",
 }

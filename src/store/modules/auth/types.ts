@@ -20,6 +20,7 @@ export enum GetterTypes {
   GET_USER = "GET_USER",
   GET_TOKEN = "GET_TOKEN",
   GET_ROLES = "GET_ROLES",
+  IS_LOGGED = "IS_LOGGED",
 }
 
 export const Getters = {

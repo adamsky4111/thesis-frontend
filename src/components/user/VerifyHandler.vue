@@ -47,7 +47,7 @@ export default Vue.extend({
       const response = await security.verify({ token, email });
       this.verifyResult = !!response;
       this.loading = false;
-      this.verifyResult = true;
+      // this.verifyResult = true;
     },
     login() {
       this.$router.push("/login");

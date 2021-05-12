@@ -38,6 +38,44 @@
     }
   },
   "account": {
+    "stream": {
+      "title_create": "Zaplanowanie transmisji",
+      "name": "Nazwa transmisji (widzialna użytkownikom)",
+      "description": "Opis transmisji (widzialny użytkownikom)",
+      "start_now": "Chcę rozpocząć od razu",
+      "start_hour": "Godzina rozpoczęcia transmisji",
+      "start_date": "Data transmisji",
+      "ending_hour": "Godzina planowanego zakończenia",
+      "ending_date": "Data planowanego zakończenia",
+      "submit": "Zatwierdzam transmisję"
+    },
+    "channels": {
+      "show": {
+        "header": "Informacje o kanale {{ name }}",
+        "base_info": "Informacje podstawowe",
+        "setting_info": "Ustawienia",
+        "like_users": "Ilośc użytkowników śledzących kanał",
+        "next_broadcast": "Data następnej transmisji",
+        "no_next_broadcast": "Nie ustawiono daty transmisji",
+        "close_channel": "Zamknij widok"
+      },
+      "add_transmission": "Zaplanuj transmisję",
+      "header": "Zarządzanie kanałami",
+      "search": {
+        "is_default": "Czy domyślny",
+        "description": "Opis zawiera",
+        "name": "Nazwa zaweira"
+      },
+      "choose_settings": "Wybierz już istniejące ustawienie",
+      "name": "Nazwa kanału",
+      "is_default": "Ustawiony jako domyślny",
+      "description": "Opis kanału",
+      "create": "Stwórz nowy kanał",
+      "set_default": "Ustaw jako domyślny",
+      "title_create": "Tworzenie nowego kanału",
+      "title_edit": "Edycja istniejącego kanału {{ name }}",
+      "submit": "Zatwierdzam kanał"
+    },
     "settings": {
       "header": "Ustawienia do kanałów",
       "name": "Nazwa ustawienia",
@@ -71,6 +109,17 @@
       "logout": "Wyloguj"
     }
   },
+  "stream": {
+    "description": "Opis transmisji",
+    "channel": {
+      "description": "Informacje o kanale",
+      "name": "Kanał"
+    },
+    "chat": "Czat"
+  },
+  "chat": {
+    "send": "Wyślij"
+  },
   "action": {
     "save": "Zapisz zmiany"
   },
@@ -81,6 +130,7 @@
     "edit": "Edytuj",
     "delete": "Usuń",
     "action": "Akcje",
-    "rows_per_page": "Ilość wierszy na stronę"
+    "rows_per_page": "Ilość wierszy na stronę",
+    "show": "Pokaż"
   }
 }

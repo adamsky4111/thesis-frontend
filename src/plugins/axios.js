@@ -5,7 +5,7 @@ import { GetterTypes, ActionTypes } from "../store/modules/auth/AuthStoreTypes";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "http://localhost:1000",
+    // "Access-Control-Allow-Origin": "*",
   },
   baseURL: "http://localhost:1000/",
 };

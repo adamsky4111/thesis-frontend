@@ -3,8 +3,10 @@ import Vuex, { StoreOptions } from "vuex";
 import { RootState } from "./types";
 import { auth } from "./modules/auth";
 import { account } from "./modules/account";
+import { accountChannels } from "@/store/modules/accountChannels";
+import { accountStreams } from "@/store/modules/accountStreams";
+import { streams } from "@/store/modules/stream";
 import createPersistedState from "vuex-persistedstate";
-
 Vue.use(Vuex);
 
 const store: StoreOptions<RootState> = {
@@ -22,6 +24,9 @@ const store: StoreOptions<RootState> = {
   modules: {
     auth,
     account,
+    accountChannels,
+    accountStreams,
+    streams,
   },
 };
 

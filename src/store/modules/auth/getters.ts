@@ -8,6 +8,7 @@ export type Getters = {
   [GetterTypes.GET_USER](state: State): UserModel;
   [GetterTypes.GET_ROLES](state: State): Array<string>;
   [GetterTypes.GET_TOKEN](state: State): string | null;
+  [GetterTypes.IS_LOGGED](state: State): boolean;
 };
 
 export const getters: GetterTree<State, RootState> & Getters = {
@@ -21,5 +22,8 @@ export const getters: GetterTree<State, RootState> & Getters = {
   },
   [GetterTypes.GET_TOKEN]: (state) => {
     return state.token;
+  },
+  [GetterTypes.IS_LOGGED]: (state) => {
+    return state.token !== null;
   },
 };

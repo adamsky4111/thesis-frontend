@@ -1,7 +1,11 @@
 <template>
   <div class="home">
     <v-row>
-      <v-col align="center" class="register-form-wrapper">
+      <v-col
+        align="center"
+        class="register-form-wrapper"
+        style="margin-bottom: 500px"
+      >
         <verify-handler />
       </v-col>
     </v-row>

@@ -1,4 +1,5 @@
 import { RouteConfig } from "vue-router";
+import { Layout } from "@/router/types";
 
 const anonymous: Array<RouteConfig> = [
   {
@@ -8,6 +9,24 @@ const anonymous: Array<RouteConfig> = [
     meta: {
       auth: false,
       role: [],
+    },
+  },
+  {
+    path: "/",
+    name: "Home",
+    component: () => import("@/views/Home.vue"),
+    meta: {
+      auth: false,
+      layout: Layout.DEFAULT,
+    },
+  },
+  {
+    path: "/stream/:id",
+    name: "Stream",
+    component: () => import("@/views/Stream/StreamView.vue"),
+    meta: {
+      auth: false,
+      layout: Layout.DEFAULT,
     },
   },
   {

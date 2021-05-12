@@ -1,7 +1,17 @@
 <template>
-  <v-navigation-drawer absolute permanent right>
+  <v-navigation-drawer
+    class="drawer"
+    v-model="drawer"
+    :mini-variant.sync="mini"
+    floating
+    fixed
+    right
+  >
     <template v-slot:prepend>
       <v-list-item two-line>
+        <v-btn icon @click.stop="mini = !mini">
+          <v-icon>{{ mini ? "mdi-chevron-left" : "mdi-chevron-right" }}</v-icon>
+        </v-btn>
         <v-list-item-avatar>
           <img :src="user.avatar || ''" />
         </v-list-item-avatar>
@@ -16,15 +26,12 @@
         </v-list-item-content>
       </v-list-item>
     </template>
-
     <v-divider></v-divider>
-
     <v-list dense>
       <v-list-item v-for="item in items" :key="item.title">
         <v-list-item-icon>
           <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
-
         <v-list-item-content>
           <v-list-item-title
             ><router-link :to="item.to">{{
@@ -45,6 +52,8 @@ import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
   components: {},
   data: function () {
     return {
+      mini: true,
+      drawer: true,
       items: [
         {
           title: this.$translation("account.menu.home"),
@@ -64,7 +73,7 @@ import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
         {
           title: this.$translation("account.menu.my_channels"),
           icon: "mdi-movie-open-settings",
-          to: "/channels",
+          to: "/account/channels",
         },
         {
           title: this.$translation("account.menu.channel_configs"),
@@ -92,4 +101,9 @@ import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
 })
 export default class AccountMenu extends Vue {}
 </script>
-<style scoped></style>
+<style scoped>
+.drawer {
+  margin-top: 70px;
+  background-color: #eeeeff !important;
+}
+</style>

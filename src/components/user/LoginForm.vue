@@ -24,6 +24,7 @@
               >
               </v-text-field>
               <v-text-field
+                type="password"
                 :label="$translation('user.password')"
                 :rules="rules.password"
                 required

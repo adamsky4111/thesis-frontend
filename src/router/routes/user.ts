@@ -12,16 +12,6 @@ const user: Array<RouteConfig> = [
     },
   },
   {
-    path: "/home",
-    name: "Home",
-    component: () => import("@/views/Home.vue"),
-    meta: {
-      auth: true,
-      role: [UserRole.ROLE_USER],
-      layout: Layout.LOGGED_USER,
-    },
-  },
-  {
     path: "/account",
     name: "account",
     component: () => import("@/views/Account/DefaultAccountView.vue"),
@@ -45,6 +35,38 @@ const user: Array<RouteConfig> = [
     path: "/account/settings",
     name: "account_settings",
     component: () => import("@/views/Account/ChannelSettings.vue"),
+    meta: {
+      auth: true,
+      role: [UserRole.ROLE_USER],
+      layout: Layout.LOGGED_USER,
+    },
+  },
+  {
+    path: "/account/channels",
+    name: "account_channels",
+    component: () => import("@/views/Account/ChannelView.vue"),
+    meta: {
+      auth: true,
+      role: [UserRole.ROLE_USER],
+      layout: Layout.LOGGED_USER,
+    },
+    children: [
+      {
+        path: ":id",
+        component: () => import("@/views/Account/AccountChannelShowView.vue"),
+        props: true,
+        meta: {
+          auth: true,
+          role: [UserRole.ROLE_USER],
+          layout: Layout.LOGGED_USER,
+        },
+      },
+    ],
+  },
+  {
+    path: "/account/stream/start",
+    name: "account_stream_start",
+    component: () => import("@/views/Account/AccountStreamConfigView.vue"),
     meta: {
       auth: true,
       role: [UserRole.ROLE_USER],

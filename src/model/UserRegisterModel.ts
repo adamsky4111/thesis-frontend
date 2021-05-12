@@ -18,7 +18,7 @@ export class UserRegisterModel extends UserModel implements IValidator {
       ]),
       about: [],
       country: [],
-      nick: validators.noSpace,
+      nick: [],
       firstName: validators.firstUpper,
       lastName: validators.firstUpper,
     };

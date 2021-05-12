@@ -80,33 +80,29 @@ import LoadingBar from "@/components/common/LoadingBar.vue";
     user: UserModel,
   },
   components: { AvatarChanger, LoadingBar },
-
-  data: function () {
-    return {
-      avatarDialog: false,
-      loading: false,
-    };
-  },
-  methods: {
-    openEditor() {
-      this.$emit("displayEdit", true);
-    },
-    changeAvatar() {
-      this.avatarDialog = true;
-    },
-    closeAvatarChanger() {
-      this.avatarDialog = false;
-    },
-    async uploadAvatar(file) {
-      this.loading = true;
-      let form = new FormData();
-      form.append("file", file);
-      await this.$store.dispatch(ActionTypes.CHANGE_AVATAR, form);
-      this.loading = false;
-      this.closeAvatarChanger();
-    },
-  },
+  methods: {},
 })
-export default class AccountInformation extends Vue {}
+export default class AccountInformation extends Vue {
+  loading = false;
+  avatarDialog = false;
+
+  openEditor(): void {
+    this.$emit("displayEdit", true);
+  }
+  changeAvatar(): void {
+    this.avatarDialog = true;
+  }
+  closeAvatarChanger(): void {
+    this.avatarDialog = false;
+  }
+  async uploadAvatar(file): Promise<void> {
+    this.loading = true;
+    let form = new FormData();
+    form.append("file", file);
+    await this.$store.dispatch(ActionTypes.CHANGE_AVATAR, form);
+    this.loading = false;
+    this.closeAvatarChanger();
+  }
+}
 </script>
 <style scoped></style>

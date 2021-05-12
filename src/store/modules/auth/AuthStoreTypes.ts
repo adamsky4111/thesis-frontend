@@ -6,10 +6,15 @@ export enum MutationTypes {
 
 export enum ActionTypes {
   LOGIN = "auth/LOGIN",
+  LOGOUT = "auth/LOGOUT",
+  EDIT_ACCOUNT = "auth/EDIT_ACCOUNT",
+  CHANGE_AVATAR = "auth/CHANGE_AVATAR",
+  REFRESH_TOKEN = "auth/REFRESH_TOKEN",
 }
 
 export enum GetterTypes {
   GET_USER = "auth/GET_USER",
   GET_TOKEN = "auth/GET_TOKEN",
   GET_ROLES = "auth/GET_ROLES",
+  IS_LOGGED = "auth/IS_LOGGED",
 }

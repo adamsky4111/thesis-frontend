@@ -6,11 +6,16 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import translations from "@/plugins/translation/translations";
 import "./style/main.scss";
+import moment from "@/plugins/moment/moment";
+import wysiwyg from "vue-wysiwyg";
+import "vue-wysiwyg/dist/vueWysiwyg.css";
+
+Vue.use(wysiwyg, {});
 
 Vue.config.productionTip = false;
 
 Vue.use(translations);
-
+Vue.use(moment);
 new Vue({
   router,
   store,

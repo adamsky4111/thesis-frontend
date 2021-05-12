@@ -1,14 +1,27 @@
 <template>
   <div class="home">
-    <account-menu />
+    <v-row>
+      <v-col align="center">
+        <div class="stream-list">
+          <stream-list />
+        </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import AccountMenu from "@/components/user/AccountMenu.vue";
+import StreamList from "@/components/stream/StreamList.vue";
 @Component({
-  components: { AccountMenu },
+  components: { StreamList },
 })
 export default class Home extends Vue {}
 </script>
+<style scoped lang="scss">
+.stream-list {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 400px;
+}
+</style>

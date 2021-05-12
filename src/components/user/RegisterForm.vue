@@ -13,6 +13,7 @@
               style="width: 400px"
               v-model="form.valid"
               lazy-validation
+              v-if="!send"
             >
               <div class="register-form-required">
                 <v-text-field
@@ -35,6 +36,7 @@
                 <v-text-field
                   :label="$translation('user.password')"
                   :rules="rules.password"
+                  type="password"
                   required
                   outlined
                   v-model="user.password"
@@ -43,6 +45,7 @@
                 <v-text-field
                   :label="$translation('user.repeatPassword')"
                   :rules="rules.repeatPassword"
+                  type="password"
                   required
                   outlined
                   v-model="user.repeatPassword"
@@ -92,6 +95,9 @@
                 </v-textarea>
               </div>
             </v-form>
+            <div v-else style="margin-bottom: 400px">
+              Udało się zarejestrować, email aktywacyjny został wysłany
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -100,7 +106,7 @@
       <v-container>
         <v-row>
           <v-col align="center" justify="center">
-            <v-btn color="warning" dark text @click="submit">
+            <v-btn color="warning" dark @click="submit" v-if="!send">
               {{ $translation("user.register") }}
             </v-btn>
           </v-col>
@@ -122,6 +128,7 @@ import api from "@/api/user";
   data: () => ({
     form: new UserRegisterForm(),
     showPersonal: false,
+    send: false,
   }),
   computed: {
     user() {
@@ -139,10 +146,11 @@ import api from "@/api/user";
 
       console.log(valid);
       if (valid) {
-        api.SECURITY.login(this.$data.form.model.createArrayParams()).then(
+        api.SECURITY.register(this.$data.form.model.createArrayParams()).then(
           (response) => {
             if (response.status) {
               console.log("success");
+              this.send = true;
             } else {
               console.log("fail");
             }

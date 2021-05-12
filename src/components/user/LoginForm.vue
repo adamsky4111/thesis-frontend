@@ -24,6 +24,7 @@
               >
               </v-text-field>
               <v-text-field
+                type="password"
                 :label="$translation('user.password')"
                 :rules="rules.password"
                 required
@@ -37,8 +38,22 @@
       </v-container>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="blue darken-1" text @click="submit"> ZAPISZ </v-btn>
+      <v-container>
+        <v-row>
+          <v-col cols="12" align="center" justify="center">
+            <v-btn color="warning" dark @click="submit">
+              {{ $translation("user.login") }}
+            </v-btn>
+          </v-col>
+          <v-col cols="12">
+            <a @click="openRecoverModal">
+              {{ $translation("user.recovery_info") }}
+            </a>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card-actions>
+    <password-recovery v-model="recover" :display="recover" />
   </v-card>
 </template>
 
@@ -47,9 +62,10 @@ import { Component, Vue } from "vue-property-decorator";
 import { UserLoginForm } from "@/model/UserLoginForm";
 import { VForm } from "@/type/Form";
 import { ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
+import PasswordRecovery from "@/components/user/PasswordRecovery.vue";
 
 @Component({
-  components: {},
+  components: { PasswordRecovery },
   data: () => ({
     form: new UserLoginForm(),
   }),
@@ -65,6 +81,15 @@ import { ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
   },
 })
 export default class LoginForm extends Vue {
+  recover = false;
+
+  openRecoverModal(): void {
+    console.log(this.recover);
+    this.recover = true;
+  }
+  closeRecoverModal(): void {
+    this.recover = false;
+  }
   async submit(): Promise<any> {
     const valid = (this.$refs.loginForm as VForm).validate();
     if (valid) {

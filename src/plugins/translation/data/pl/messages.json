@@ -1,4 +1,7 @@
 {
+  "nav": {
+    "title": "ProStream"
+  },
   "login": "Logowanie",
   "register": {
     "header": "Rejestracja"
@@ -13,17 +16,121 @@
     "nick": "Identyfikator",
     "country": "Kraj",
     "about": "O mnie",
-    "logged": "Zalogowany"
+    "logged": "Zalogowany",
+    "login": "Zaloguj",
+    "register": "Zarejestruj",
+    "personal": "Informacje personalne",
+    "verify": {
+      "success": "Sukces, udało się zweryfikować konto, możesz teraz",
+      "success_link": "zalogować",
+      "fail": "Nie udało się zweryfikować konta"
+    },
+    "recovery_password": "Wyślij email do odzyskania hasła",
+    "recovery_info": "Nie masz dostępu do konta? Spróbuj odzyskać swoje dane logowania!",
+    "recovery": {
+      "success": "Udało się zmienić hasło, możesz już z niego korzystać",
+      "fail": "Nie udało się zmienić hasła",
+      "change_password": "Zmiana hasła",
+      "accept": "Zatwierdzam hasło",
+      "title": "Podaj swój email aby odzyskać hasło",
+      "loading": "Weryfikowanie/Wysyłanie e-maila",
+      "send": "Jeżeli konto zostało skojarzone z wpisanym adresem e-mail, powinien przyjść na wskazany adres link do odzyskania hasła."
+    }
   },
   "account": {
+    "stream": {
+      "title_create": "Zaplanowanie transmisji",
+      "name": "Nazwa transmisji (widzialna użytkownikom)",
+      "description": "Opis transmisji (widzialny użytkownikom)",
+      "start_now": "Chcę rozpocząć od razu",
+      "start_hour": "Godzina rozpoczęcia transmisji",
+      "start_date": "Data transmisji",
+      "ending_hour": "Godzina planowanego zakończenia",
+      "ending_date": "Data planowanego zakończenia",
+      "submit": "Zatwierdzam transmisję"
+    },
+    "channels": {
+      "show": {
+        "header": "Informacje o kanale {{ name }}",
+        "base_info": "Informacje podstawowe",
+        "setting_info": "Ustawienia",
+        "like_users": "Ilośc użytkowników śledzących kanał",
+        "next_broadcast": "Data następnej transmisji",
+        "no_next_broadcast": "Nie ustawiono daty transmisji",
+        "close_channel": "Zamknij widok"
+      },
+      "add_transmission": "Zaplanuj transmisję",
+      "header": "Zarządzanie kanałami",
+      "search": {
+        "is_default": "Czy domyślny",
+        "description": "Opis zawiera",
+        "name": "Nazwa zaweira"
+      },
+      "choose_settings": "Wybierz już istniejące ustawienie",
+      "name": "Nazwa kanału",
+      "is_default": "Ustawiony jako domyślny",
+      "description": "Opis kanału",
+      "create": "Stwórz nowy kanał",
+      "set_default": "Ustaw jako domyślny",
+      "title_create": "Tworzenie nowego kanału",
+      "title_edit": "Edycja istniejącego kanału {{ name }}",
+      "submit": "Zatwierdzam kanał"
+    },
+    "settings": {
+      "header": "Ustawienia do kanałów",
+      "name": "Nazwa ustawienia",
+      "age_allowed": "Dozwolony wiek na transmisji",
+      "is_default": "Czy domyślne",
+      "set_default": "Ustaw jako domyślne",
+      "title_edit": "Edycja ustawienia {{ name }}",
+      "title_create": "Tworzenie nowego ustawienia",
+      "create": "Dodaj ustawienie",
+      "search": {
+        "name": "Wpisz nazwę",
+        "max": "Do",
+        "min": "Od",
+        "is_default": "Pokaż domyślne"
+      },
+      "submit": "Zatwierdzam"
+    },
     "edit": {
       "header": "Edycja Profilu"
+    },
+    "my_account": {
+      "header": "Moje konto"
     },
     "information": "Informacje o koncie",
     "menu": {
       "home": "Home",
       "my_account": "Moje konto",
+      "favorite_channels": "Ulubione kanały",
+      "my_channels": "Moje kanały",
+      "channel_configs": "Ustawienia kanałów",
       "logout": "Wyloguj"
     }
+  },
+  "stream": {
+    "description": "Opis transmisji",
+    "channel": {
+      "description": "Informacje o kanale",
+      "name": "Kanał"
+    },
+    "chat": "Czat"
+  },
+  "chat": {
+    "send": "Wyślij"
+  },
+  "action": {
+    "save": "Zapisz zmiany"
+  },
+  "app": {
+    "loading": "Ładowanie",
+    "yes": "Tak",
+    "no": "Nie",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "action": "Akcje",
+    "rows_per_page": "Ilość wierszy na stronę",
+    "show": "Pokaż"
   }
 }

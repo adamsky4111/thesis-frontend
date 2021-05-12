@@ -13,20 +13,28 @@
 
           <template v-slot:extension>
             <v-spacer></v-spacer>
-            <v-btn class="mb-4 mr-5" outlined color="white" @click="goToLogin">
-              {{ $translation("user.login") }}
-            </v-btn>
-            <v-btn
-              class="mb-4 mr-12"
-              outlined
-              color="white"
-              @click="goToRegister"
-            >
-              {{ $translation("user.register") }}
-            </v-btn>
+            <div v-if="!isLogged">
+              <v-btn
+                class="mb-4 mr-5"
+                outlined
+                color="white"
+                @click="goToLogin"
+              >
+                {{ $translation("user.login") }}
+              </v-btn>
+              <v-btn
+                class="mb-4 mr-12"
+                outlined
+                color="white"
+                @click="goToRegister"
+              >
+                {{ $translation("user.register") }}
+              </v-btn>
+            </div>
           </template>
         </v-toolbar>
       </div>
+      <account-menu v-if="isLogged" />
       <slot />
       <default-footer />
     </div>
@@ -37,6 +45,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import AccountMenu from "@/components/user/AccountMenu.vue";
 import DefaultFooter from "@/components/common/DefaultFooter.vue";
+import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
 
 @Component({
   components: { DefaultFooter, AccountMenu },
@@ -46,6 +55,11 @@ import DefaultFooter from "@/components/common/DefaultFooter.vue";
     },
     goToRegister() {
       this.$router.push("/register");
+    },
+  },
+  computed: {
+    isLogged(): boolean {
+      return this.$store.getters[GetterTypes.IS_LOGGED];
     },
   },
 })

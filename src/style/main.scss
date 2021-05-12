@@ -1,3 +1,26 @@
+.reset-top-space {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.reset-bot-space {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.reset-right-space {
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.reset-left-space {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+
+
 @import "account.scss";
 @import "login.scss";
 @import "register.scss";
+@import "restore-password";
+@import "account-settings";

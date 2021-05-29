@@ -5,9 +5,7 @@
         <v-container>
           <v-row>
             <v-col align="center" justify="center">
-              <div
-                style="background-color: black; width: 100%; height: 800px"
-              ></div>
+              <stream-player :stream-id="streamId" />
             </v-col>
           </v-row>
         </v-container>
@@ -24,9 +22,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import StreamPlayer from "@/components/stream/StreamPlayer.vue";
 
-@Component({})
-export default class StreamLive extends Vue {}
+@Component({
+  components: { StreamPlayer },
+})
+export default class StreamLive extends Vue {
+  @Prop({
+    default: -1,
+  })
+  streamId!: number;
+}
 </script>
 <style scoped></style>

@@ -24,7 +24,6 @@ export default class StreamView extends Vue {
     api.STREAM.get(+this.$route.params.id).then((response) => {
       this.stream = response.data.stream;
       this.loading = false;
-      console.log(this.stream);
     });
   }
 }

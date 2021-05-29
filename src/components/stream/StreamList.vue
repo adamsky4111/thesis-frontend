@@ -38,7 +38,6 @@ export default class StreamList extends Vue {
   searchFilter = new SearchFilter();
 
   mounted(): void {
-    console.log("stream-list");
     this.searchFilter.paginated = false;
     this.$store.dispatch(ActionTypes.SEARCH, this.searchFilter);
   }

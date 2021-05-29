@@ -38,7 +38,6 @@ export default Vue.extend({
   mounted() {
     const token = String(this.$route.query.token);
     const email = String(this.$route.query.email);
-    console.log(token, email);
     this.$store.commit(MutationTypes.SET_TOKEN, null);
     this.verify(token, email);
   },

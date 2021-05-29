@@ -47,7 +47,6 @@ export default class TimeDialogPicker extends Vue {
   sendData(): void {
     const split = this.time.split(":");
 
-    console.log(this.time);
     this.$emit("onChange", {
       hours: +split[0],
       minutes: +split[1],

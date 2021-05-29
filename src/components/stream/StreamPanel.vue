@@ -9,7 +9,7 @@
           <v-col cols="8">
             <v-row>
               <v-col cols="12" class="reset-bot-space">
-                <stream-live />
+                <stream-live :stream-id="model.id" />
               </v-col>
               <v-col cols="8" class="reset-top-space">
                 <stream-description style="margin-top: 10px" :model="model" />

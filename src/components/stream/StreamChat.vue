@@ -85,10 +85,8 @@ export default class StreamChat extends Vue {
   loadChat(): void {
     api.CHAT.getChat(this.streamId).then((response) => {
       this.data.messages = response.data.chat.messages.map((item) => {
-        console.log(item);
         return new MessageModel(item);
       });
-      console.log(this.data.messages);
     });
   }
 }

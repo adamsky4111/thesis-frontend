@@ -107,7 +107,6 @@ export default class AccountSettingsForm extends Vue {
     if (this.model === undefined) {
       this.model = new SettingsModel();
     }
-    console.log(this.model, "mounted");
   }
 
   get displayDialog(): boolean {
@@ -122,7 +121,6 @@ export default class AccountSettingsForm extends Vue {
 
     if (valid) {
       this.form.sending = true;
-      console.log(this.model);
       if (this.editMode) {
         await this.$store.dispatch(ActionTypes.UPDATE, this.model);
       } else {

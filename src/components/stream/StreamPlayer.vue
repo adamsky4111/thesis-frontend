@@ -33,7 +33,7 @@ require("videojs-contrib-hls/dist/videojs-contrib-hls.js");
           {
             withCredentials: false,
             type: "application/x-mpegURL",
-            src: "http://localhost:5000/?id=8",
+            src: "http://localhost:5000/8.m3u8",
           },
         ],
         controlBar: {

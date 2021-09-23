@@ -147,7 +147,7 @@ export default class AccountChannelTable extends Vue {
 
     {
       text: this.$translation("account.channels.description"),
-      value: "description",
+      value: "",
     },
 
     {

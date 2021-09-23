@@ -35,6 +35,7 @@
         </v-toolbar>
       </div>
       <account-menu v-if="isLogged" />
+      <!--      <stream-config v-if="isLogged" />-->
       <slot />
       <default-footer />
     </div>
@@ -46,9 +47,10 @@ import { Component, Vue } from "vue-property-decorator";
 import AccountMenu from "@/components/user/AccountMenu.vue";
 import DefaultFooter from "@/components/common/DefaultFooter.vue";
 import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
+import StreamConfig from "@/components/stream/StreamConfig.vue";
 
 @Component({
-  components: { DefaultFooter, AccountMenu },
+  components: { StreamConfig, DefaultFooter, AccountMenu },
   methods: {
     goToLogin() {
       this.$router.push("/login");

@@ -5,6 +5,7 @@
       <v-container>
         <v-row>
           <stream-card :model="item" v-for="item in items" :key="item.id" />
+          <stream-config />
         </v-row>
       </v-container>
     </v-card-text>
@@ -23,10 +24,12 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import StreamCard from "@/components/stream/StreamCard.vue";
 import { ActionTypes, GetterTypes } from "@/store/modules/stream/PublicTypes";
 import { SearchFilter } from "@/model/Filter/Search/SearchFilter";
+import StreamConfig from "@/components/stream/StreamConfig.vue";
 
 @Component({
   components: {
     StreamCard,
+    StreamConfig,
   },
   computed: {
     items() {

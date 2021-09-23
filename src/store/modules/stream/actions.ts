@@ -29,7 +29,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
         const data = response.data.items.map((item) => {
           return new StreamModel(item);
         });
-        console.log(data);
         commit(MutationTypes.SET_ITEMS, data);
         commit(MutationTypes.SET_TOTAL, response.data.total);
         commit(MutationTypes.SET_PAGES, response.data.pages);

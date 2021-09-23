@@ -84,7 +84,6 @@ export default class LoginForm extends Vue {
   recover = false;
 
   openRecoverModal(): void {
-    console.log(this.recover);
     this.recover = true;
   }
   closeRecoverModal(): void {

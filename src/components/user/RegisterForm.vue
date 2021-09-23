@@ -144,7 +144,6 @@ import api from "@/api/user";
     submit() {
       const valid = (this.$refs.registerForm as VForm).validate();
 
-      console.log(valid);
       if (valid) {
         api.SECURITY.register(this.$data.form.model.createArrayParams()).then(
           (response) => {

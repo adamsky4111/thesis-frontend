@@ -201,7 +201,6 @@ export default class SettingsTable extends Vue {
 
   paginationChange(pagination: Record<string, any>): void {
     this.filter.page = pagination.page;
-    console.log(pagination);
     this.filter.perPage = pagination.itemsPerPage;
     this.loadSettings();
   }
@@ -243,7 +242,6 @@ export default class SettingsTable extends Vue {
     }, 500);
   }
   async loadSettings(): Promise<void> {
-    console.log(this.filter);
     await this.$store.dispatch(ActionTypes.SEARCH, this.filter);
   }
 }

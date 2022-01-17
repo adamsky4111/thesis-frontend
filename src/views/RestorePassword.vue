@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-row>
-      <v-col align="center" class="restore-form-wrapper">
+      <v-col align="center" class="restore-form-wrapper page-wrapper">
         <password-changer />
       </v-col>
     </v-row>

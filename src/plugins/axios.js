@@ -7,7 +7,7 @@ const config = {
     "Content-Type": "application/json",
     // "Access-Control-Allow-Origin": "*",
   },
-  baseURL: "http://localhost/",
+  baseURL: "http://localhost:3000/",
 };
 
 const axios = apiAxios.create(config);

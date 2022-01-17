@@ -1,6 +1,6 @@
 <template>
   <div class="stream-chat" v-if="model">
-    <v-card style="background-color: #5eb5e0">
+    <v-card>
       <v-card-title class="text-center">
         {{ $translation("stream.description") }}
       </v-card-title>

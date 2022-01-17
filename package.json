@@ -11,6 +11,7 @@
   "dependencies": {
     "@vue/composition-api": "^1.0.0-rc.6",
     "core-js": "^3.6.5",
+    "moment": "^2.29.1",
     "socket.io-stream": "^0.9.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",

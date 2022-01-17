@@ -11,15 +11,18 @@ export class StreamModel implements IModel, IValidator {
   public endingAt: Date | null = new Date();
   public settings?: SettingsModel | null;
   public channel?: ChannelModel | null;
+  public watchersCount?: number | null;
   public startNow = false;
   validator: Record<never, Array<never>>;
 
   public constructor(data?: Record<any, any>) {
     this.id = null;
     this.settings = null;
+    this.watchersCount = 0;
     if (data !== undefined) {
       Object.assign(this, data);
     }
+    console.log(this);
 
     this.validator = {
       name: [],

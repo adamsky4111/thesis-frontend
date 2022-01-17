@@ -3,9 +3,11 @@
     <v-card-title class="text-center"></v-card-title>
     <v-card-text>
       <v-container>
-        <v-row>
+        <v-row v-if="items.length > 0">
           <stream-card :model="item" v-for="item in items" :key="item.id" />
-          <stream-config />
+        </v-row>
+        <v-row v-else>
+          <v-col> <h2>Aktualnie brak transmisji :(</h2></v-col>
         </v-row>
       </v-container>
     </v-card-text>
@@ -23,13 +25,10 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import StreamCard from "@/components/stream/StreamCard.vue";
 import { ActionTypes, GetterTypes } from "@/store/modules/stream/PublicTypes";
-import { SearchFilter } from "@/model/Filter/Search/SearchFilter";
-import StreamConfig from "@/components/stream/StreamConfig.vue";
 
 @Component({
   components: {
     StreamCard,
-    StreamConfig,
   },
   computed: {
     items() {
@@ -38,11 +37,8 @@ import StreamConfig from "@/components/stream/StreamConfig.vue";
   },
 })
 export default class StreamList extends Vue {
-  searchFilter = new SearchFilter();
-
   mounted(): void {
-    this.searchFilter.paginated = false;
-    this.$store.dispatch(ActionTypes.SEARCH, this.searchFilter);
+    this.$store.dispatch(ActionTypes.SEARCH);
   }
 }
 </script>

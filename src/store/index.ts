@@ -6,6 +6,8 @@ import { account } from "./modules/account";
 import { accountChannels } from "@/store/modules/accountChannels";
 import { accountStreams } from "@/store/modules/accountStreams";
 import { streams } from "@/store/modules/stream";
+import { settings } from "@/store/modules/settings";
+import { socket } from "@/store/modules/socket";
 import createPersistedState from "vuex-persistedstate";
 Vue.use(Vuex);
 
@@ -27,6 +29,8 @@ const store: StoreOptions<RootState> = {
     accountChannels,
     accountStreams,
     streams,
+    settings,
+    socket,
   },
 };
 

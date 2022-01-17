@@ -2,7 +2,10 @@
   <div class="account-show">
     <v-row>
       <v-col align="center">
-        <h1>{{ $translation("account.my_account.header") }}</h1>
+        <account-schedule-table />
+        <stream-config />
+      </v-col>
+      <v-col align="center">
         <account-information :user="user" @displayEdit="goToAccountEdit" />
       </v-col>
     </v-row>
@@ -13,9 +16,15 @@
 import { Component, Vue } from "vue-property-decorator";
 import AccountInformation from "@/components/user/AccountInformation.vue";
 import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
+import StreamConfig from "@/components/stream/StreamConfig.vue";
+import AccountScheduleTable from "@/components/user/account/streamSchedule/AccountScheduleTable.vue";
 
 @Component({
-  components: { AccountInformation },
+  components: {
+    AccountInformation,
+    StreamConfig,
+    AccountScheduleTable,
+  },
   computed: {
     user() {
       return this.$store.getters[GetterTypes.GET_USER];

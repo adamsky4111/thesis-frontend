@@ -3,11 +3,13 @@ import { State } from "./state";
 import { RootState } from "@/store/types";
 import { GetterTypes } from "./types";
 import { StreamModel } from "@/model/StreamModel";
+import { StreamScheduleModel } from "@/model/StreamScheduleModel";
 
 export type Getters = {
   [GetterTypes.GET_ITEMS](state: State): Array<StreamModel>;
   [GetterTypes.GET_PAGES](state: State): number;
   [GetterTypes.GET_TOTAL](state: State): number;
+  [GetterTypes.GET_SCHEDULED](state: State): Array<StreamScheduleModel>;
 };
 
 export const getters: GetterTree<State, RootState> & Getters = {
@@ -19,5 +21,8 @@ export const getters: GetterTree<State, RootState> & Getters = {
   },
   [GetterTypes.GET_TOTAL]: (state) => {
     return state.total;
+  },
+  [GetterTypes.GET_SCHEDULED]: (state) => {
+    return state.schedule;
   },
 };

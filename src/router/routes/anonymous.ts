@@ -1,5 +1,7 @@
 import { RouteConfig } from "vue-router";
 import { Layout } from "@/router/types";
+import store from "@/store";
+import { GetterTypes } from "@/store/modules/auth/types";
 
 const anonymous: Array<RouteConfig> = [
   {
@@ -17,7 +19,9 @@ const anonymous: Array<RouteConfig> = [
     component: () => import("@/views/Home.vue"),
     meta: {
       auth: false,
-      layout: Layout.DEFAULT,
+      layout: store.getters[GetterTypes.IS_LOGGED]
+        ? Layout.LOGGED_USER
+        : Layout.DEFAULT,
     },
   },
   {
@@ -26,7 +30,9 @@ const anonymous: Array<RouteConfig> = [
     component: () => import("@/views/Stream/StreamView.vue"),
     meta: {
       auth: false,
-      layout: Layout.DEFAULT,
+      layout: store.getters[GetterTypes.IS_LOGGED]
+        ? Layout.LOGGED_USER
+        : Layout.DEFAULT,
     },
   },
   {

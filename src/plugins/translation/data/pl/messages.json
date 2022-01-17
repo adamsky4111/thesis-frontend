@@ -1,6 +1,6 @@
 {
   "nav": {
-    "title": "ProStream"
+    "title": "PRO-STREAM - Podziel się wiedzą"
   },
   "login": "Logowanie",
   "register": {
@@ -37,6 +37,10 @@
       "send": "Jeżeli konto zostało skojarzone z wpisanym adresem e-mail, powinien przyjść na wskazany adres link do odzyskania hasła."
     }
   },
+  "channel": {
+    "subscribe": "Subskrybuj",
+    "unsubscribe": "Subskrybujesz ten kanał"
+  },
   "account": {
     "stream": {
       "title_create": "Zaplanowanie transmisji",
@@ -65,6 +69,12 @@
         "is_default": "Czy domyślny",
         "description": "Opis zawiera",
         "name": "Nazwa zaweira"
+      },
+      "favorite": {
+        "header": "Ulubione kanały",
+        "no_subs": "Nie subskrybujesz żadnego kanału",
+        "subscribe_from": "Subskrybujesz od",
+        "name": "Nazwa kanału"
       },
       "choose_settings": "Wybierz już istniejące ustawienie",
       "name": "Nazwa kanału",
@@ -106,7 +116,8 @@
       "favorite_channels": "Ulubione kanały",
       "my_channels": "Moje kanały",
       "channel_configs": "Ustawienia kanałów",
-      "logout": "Wyloguj"
+      "logout": "Wyloguj",
+      "theme_change": "Zmień kolory"
     }
   },
   "stream": {

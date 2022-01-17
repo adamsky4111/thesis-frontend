@@ -9,7 +9,9 @@
         >
           <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-          <v-toolbar-title>{{ $translation("nav.title") }}</v-toolbar-title>
+          <v-toolbar-title v-on:click="goToHome">
+            {{ $translation("nav.title") }}</v-toolbar-title
+          >
 
           <template v-slot:extension>
             <v-spacer></v-spacer>
@@ -58,6 +60,9 @@ import StreamConfig from "@/components/stream/StreamConfig.vue";
     goToRegister() {
       this.$router.push("/register");
     },
+    goToHome() {
+      this.$router.push("/");
+    },
   },
   computed: {
     isLogged(): boolean {
@@ -67,4 +72,20 @@ import StreamConfig from "@/components/stream/StreamConfig.vue";
 })
 export default class DefaultLayout extends Vue {}
 </script>
-<style scoped></style>
+<style scoped>
+@font-face {
+  font-family: "Sucrose Bold Two";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/sucrose.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "IM Fell French Canon Pro";
+  src: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/im-fell-french-canon-pro.woff2")
+    format("woff2");
+}
+.v-toolbar__title {
+  font-size: 4rem !important;
+  font-family: "Sucrose Bold Two";
+  cursor: pointer;
+}
+</style>

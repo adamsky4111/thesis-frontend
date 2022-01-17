@@ -1,4 +1,5 @@
 import { StreamModel } from "@/model/StreamModel";
+import { SearchFilter } from "@/model/Filter/Search/SearchFilter";
 
 export enum MutationTypes {
   SET_ITEMS = "SET_ITEMS",
@@ -20,4 +21,5 @@ export interface StreamState {
   items: Array<StreamModel>;
   pages: number;
   total: number;
+  filter: SearchFilter;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <v-row>
-      <v-col align="center" class="register-form-wrapper">
+      <v-col align="center" class="register-form-wrapper page-wrapper">
         <register-form />
       </v-col>
     </v-row>

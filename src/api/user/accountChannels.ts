@@ -17,6 +17,15 @@ const urls = {
   Delete: (id: number): string => {
     return `${base}/delete/${id}`;
   },
+  Subscribe: (id: number): string => {
+    return `${base}/subscribe/${id}`;
+  },
+  Unsubscribe: (id: number): string => {
+    return `${base}/unsubscribe/${id}`;
+  },
+  subscribed: (): string => {
+    return `${base}/subscribed`;
+  },
 };
 
 const get = (id: number): Promise<AxiosResponse> => {
@@ -42,10 +51,25 @@ const remove = (params: ChannelModel): Promise<AxiosResponse> => {
   return axios.delete(urls.Delete(params.id as number), {});
 };
 
+const subscribe = (params: ChannelModel): Promise<AxiosResponse> => {
+  return axios.put(urls.Subscribe(params.id as number));
+};
+
+const unsubscribe = (params: ChannelModel): Promise<AxiosResponse> => {
+  return axios.put(urls.Unsubscribe(params.id as number));
+};
+
+const subscribed = (): Promise<AxiosResponse> => {
+  return axios.get(urls.subscribed());
+};
+
 export default {
   get,
   list,
   create,
   update,
   remove,
+  subscribe,
+  unsubscribe,
+  subscribed,
 };

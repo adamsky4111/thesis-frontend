@@ -1,73 +1,144 @@
 <template>
-  <div class="web-camera-container">
-    <div class="camera-button">
-      <button
-        type="button"
-        class="button is-rounded"
-        :class="{ 'is-primary': !isCameraOpen, 'is-danger': isCameraOpen }"
-        @click="toggleCamera"
-      >
-        <span v-if="!isCameraOpen">Open Camera</span>
-        <span v-else>Close Camera</span>
-      </button>
-    </div>
+  <v-card max-width="900">
+    <v-card-title>
+      <div>Najbliższa transmisja</div>
+    </v-card-title>
+    <v-card-text>
+      <v-container>
+        <div class="text-center countdown" v-if="latestStream">
+          {{
+            `${
+              isStreamStarted
+                ? "Transmisja rozpoczęła się"
+                : "Transmisja odbywa się za: "
+            } ${formatted} ${isStreamStarted ? "temu" : ""}`
+          }}
+        </div>
+        <span v-else>Brak planów</span>
+        <div v-if="streamLength" class="stream-length">
+          {{ "Zaplanowany czas trwania: " + streamLength }}
+        </div>
+        <v-row>
+          <v-col cols="12" align="center" justify="center">
+            <div class="web-camera-container">
+              <div class="camera-button">
+                <v-btn @click="toggleCamera">
+                  {{
+                    isCameraOpen ? "Wyłącz transmisję" : "Uruchom transmisję"
+                  }}</v-btn
+                >
+              </div>
+              <div v-show="isCameraOpen && isLoading" class="camera-loading">
+                <ul class="loader-circle">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
+              <div v-if="isCameraOpen" v-show="!isLoading" class="camera-box">
+                <div class="camera-shutter"></div>
+                <video
+                  id="camera"
+                  ref="camera"
+                  :width="450"
+                  :height="337.5"
+                  autoplay
+                ></video>
 
-    <div v-show="isCameraOpen && isLoading" class="camera-loading">
-      <ul class="loader-circle">
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-
-    <div
-      v-if="isCameraOpen"
-      v-show="!isLoading"
-      class="camera-box"
-      :class="{ flash: isShotPhoto }"
-    >
-      <div class="camera-shutter" :class="{ flash: isShotPhoto }"></div>
-
-      <video
-        id="camera"
-        ref="camera"
-        :width="450"
-        :height="337.5"
-        autoplay
-      ></video>
-
-      <canvas id="canvas" ref="canvas" :width="450" :height="337.5"></canvas>
-    </div>
-
-    <div v-if="isCameraOpen && !isLoading" class="camera-shoot">
-      <button type="button" class="button" @click="takePhoto">
-        <img
-          src="https://img.icons8.com/material-outlined/50/000000/camera--v2.png"
-        />
-      </button>
-    </div>
-    <video id="video2"></video>
-
-    <div v-if="isPhotoTaken && isCameraOpen" class="camera-download">
-      <a
-        id="downloadPhoto"
-        download="my-photo.jpg"
-        class="button"
-        role="button"
-        @click="downloadImage"
-      >
-        Download
-      </a>
-    </div>
-  </div>
+                <canvas
+                  id="canvas"
+                  ref="canvas"
+                  :width="450"
+                  :height="337.5"
+                ></canvas>
+              </div>
+              <video id="video2"></video>
+            </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import axios from "@/plugins/axios";
-import { io } from "socket.io-client";
+import { GetterTypes } from "@/store/modules/accountStreams/PublicTypes";
+import { GetterTypes as AuthGetterTypes } from "@/store/modules/auth/AuthStoreTypes";
+import moment from "moment/moment";
 
-@Component({})
+@Component({
+  computed: {
+    schedule() {
+      return this.$store.getters[GetterTypes.GET_SCHEDULED];
+    },
+    latestStream() {
+      if (Array.isArray(this.schedule) && this.schedule.length > 0) {
+        console.log(this.schedule[0]);
+        return this.schedule[0];
+      }
+
+      return null;
+    },
+    diffTime() {
+      if (this.latestStream) {
+        return new Date(this.latestStream.stream.startingAt) - new Date();
+      }
+
+      return "";
+    },
+    streamLength() {
+      if (!this.latestStream) {
+        return "";
+      }
+      const duration = moment.duration(
+        new Date(this.latestStream.stream.endingAt) -
+          new Date(this.latestStream.stream.startingAt),
+        "milliseconds"
+      );
+
+      return this.formatDate(duration);
+    },
+    isStreamStarted() {
+      return new Date(this.latestStream.stream.startingAt) - new Date() <= 0;
+    },
+  },
+  data() {
+    return {
+      duration: moment.duration(this.diffTime * 1000, "miliseconds"),
+      interval: 1000,
+      intervalObj: null,
+      formatted: null,
+    };
+  },
+  mounted() {
+    const fn = () => {
+      if (!this.latestStream) {
+        return;
+      }
+      this.duration = moment.duration(
+        new Date(this.latestStream.stream.startingAt) - new Date(),
+        "milliseconds"
+      );
+      this.formatted = this.formatDate(this.duration);
+    };
+    fn();
+    setInterval(fn, this.interval);
+  },
+  methods: {
+    formatDate(date) {
+      return (
+        ("" + Math.abs(date.days())).slice(-2) +
+        (date.days() > 1 ? " dni " : " dzień ") +
+        ("0" + Math.abs(date.hours())).slice(-2) +
+        ":" +
+        ("0" + Math.abs(date.minutes())).slice(-2) +
+        ":" +
+        ("0" + Math.abs(date.seconds())).slice(-2)
+      );
+    },
+  },
+})
 export default class StreamConfig extends Vue {
   @Prop({
     default: -1,
@@ -76,39 +147,36 @@ export default class StreamConfig extends Vue {
   mini = true;
   drawer = true;
   isCameraOpen = false;
-  isPhotoTaken = false;
-  isShotPhoto = false;
   isLoading = false;
+  socket: WebSocket | null = null;
   link = "#";
 
   toggleCamera(): void {
     if (this.isCameraOpen) {
       this.isCameraOpen = false;
-      this.isPhotoTaken = false;
-      this.isShotPhoto = false;
       this.stopCameraStream();
     } else {
       this.isCameraOpen = true;
+      this.socket = new WebSocket("ws://localhost:9090");
+      const socket = this.socket;
+      const token = this.$store.getters[AuthGetterTypes.GET_TOKEN];
+      this.socket.addEventListener("open", () => {
+        socket.send(
+          JSON.stringify({
+            streamId: this.latestStream.stream.id,
+            jwt: token,
+          })
+        );
+        socket.send(
+          JSON.stringify({
+            streamId: this.latestStream.stream.id,
+            jwt: token,
+            event: "start_stream",
+          })
+        );
+      });
       this.createCameraElement();
     }
-  }
-
-  get(url, data): void {
-    return new Promise((accept, reject) => {
-      var req = new XMLHttpRequest();
-      req.open("GET", url, true);
-      req.responseType = "arraybuffer";
-      req.da;
-
-      req.onload = function (event) {
-        var resp = req.response;
-        if (resp) {
-          accept(resp);
-        }
-      };
-
-      req.send(data);
-    });
   }
 
   createCameraElement(): void {
@@ -118,6 +186,9 @@ export default class StreamConfig extends Vue {
       audio: false,
       video: true,
     });
+    const socket = this.socket;
+    const token = this.$store.getters[AuthGetterTypes.GET_TOKEN];
+    const id = this.latestStream.stream.id;
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then((stream) => {
@@ -142,22 +213,25 @@ export default class StreamConfig extends Vue {
           };
           const form = new FormData();
           form.append("file", blob);
-          await fetch("http://127.0.0.1:5005", {
-            method: "PUT",
-            mode: "cors",
-            cache: "no-cache",
-            headers: {
-              "Access-Control-Allow-Methods": "*",
-              "Access-Control-Allow-Headers": "*",
-            },
-            body: form,
-          });
+          var reader = new FileReader();
+          reader.readAsDataURL(blob);
+          reader.onloadend = function () {
+            var base64data = reader.result;
+            socket.send(
+              JSON.stringify({
+                streamId: id,
+                jwt: token,
+                event: "chunk",
+                file: base64data,
+              })
+            );
+          };
         };
         mediaRecorder.start();
         setInterval(function () {
           mediaRecorder.stop();
           mediaRecorder.start();
-        }, 500);
+        }, 2000);
       })
       .catch(() => {
         this.isLoading = false;
@@ -171,23 +245,6 @@ export default class StreamConfig extends Vue {
     tracks.forEach((track) => {
       track.stop();
     });
-  }
-
-  takePhoto(): void {
-    if (!this.isPhotoTaken) {
-      this.isShotPhoto = true;
-
-      const FLASH_TIMEOUT = 50;
-
-      setTimeout(() => {
-        this.isShotPhoto = false;
-      }, FLASH_TIMEOUT);
-    }
-
-    this.isPhotoTaken = !this.isPhotoTaken;
-
-    const context = this.$refs.canvas.getContext("2d");
-    context.drawImage(this.$refs.camera, 0, 0, 450, 337.5);
   }
 
   videoStream(): void {
@@ -323,5 +380,12 @@ body {
       opacity: 1;
     }
   }
+}
+.countdown {
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+}
+.stream-length {
+  font-size: 1.4rem;
 }
 </style>

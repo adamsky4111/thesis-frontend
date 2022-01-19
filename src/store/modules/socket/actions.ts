@@ -39,7 +39,6 @@ type AugmentedActionContext = {
 
 export const actions: ActionTree<State, RootState> & Actions = {
   [ActionTypes.ADD_CHAT_MESSAGE]({ state, commit, rootGetters }, payload) {
-    console.log("start");
     if (!state.socket) {
       return;
     }
@@ -57,7 +56,7 @@ export const actions: ActionTree<State, RootState> & Actions = {
     console.log("test");
     let socket = state.socket;
     if (!(socket instanceof WebSocket)) {
-      socket = new WebSocket("ws://localhost:9090");
+      socket = new WebSocket(process.env.VUE_APP_SOCKET_URL);
       socket.onclose = () => {
         commit(MutationTypes.SET_SOCKET, null);
         commit(
@@ -80,7 +79,6 @@ export const actions: ActionTree<State, RootState> & Actions = {
     console.log("start");
   },
   [ActionTypes.HANDLE_EVENT]({ state, commit }, payload) {
-    console.log("handler");
     const handlers = state.messageHandlers;
     if (!(state.socket instanceof WebSocket)) {
       return;

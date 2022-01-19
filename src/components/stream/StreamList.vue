@@ -5,6 +5,9 @@
       <v-container>
         <v-row v-if="items.length > 0">
           <stream-card :model="item" v-for="item in items" :key="item.id" />
+          <stream-card :model="item" v-for="item in items" :key="item.id" />
+          <stream-card :model="item" v-for="item in items" :key="item.id" />
+          <stream-card :model="item" v-for="item in items" :key="item.id" />
         </v-row>
         <v-row v-else>
           <v-col> <h2>Aktualnie brak transmisji :(</h2></v-col>

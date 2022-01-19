@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-auto my-12 card" max-width="374" min-width="374">
+  <v-card class="mx-auto my-12 card" max-width="300" min-width="300">
     <template slot="progress">
       <v-progress-linear
         color="deep-purple"
@@ -10,7 +10,7 @@
     <div class="text-right">
       <subscribe :channel="model.channel" @click="handleRefresh"></subscribe>
     </div>
-    <v-img height="250" :src="'G'"></v-img>
+    <v-img height="150" :src="'G'"></v-img>
     <v-card-title class="justify-center"
       ><span class="text-center">{{ model.name }}</span></v-card-title
     >
@@ -69,6 +69,13 @@ export default class StreamCard extends Vue {
 .stream-card {
   margin: 50px auto auto;
 }
+.card {
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
 .theme--light {
   .card {
     background-color: #eeeeff !important;
@@ -85,6 +92,12 @@ export default class StreamCard extends Vue {
 .theme--dark {
   .card {
     background-color: #220 !important;
+    &:hover {
+      background-color: #442 !important;
+      .tag {
+        background-color: #666622 !important;
+      }
+    }
   }
 
   .tag {

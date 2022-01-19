@@ -5,9 +5,8 @@ import { GetterTypes, ActionTypes } from "../store/modules/auth/AuthStoreTypes";
 const config = {
   headers: {
     "Content-Type": "application/json",
-    // "Access-Control-Allow-Origin": "*",
   },
-  baseURL: "http://localhost:3000/",
+  baseURL: process.env.VUE_APP_API_URL,
 };
 
 const axios = apiAxios.create(config);

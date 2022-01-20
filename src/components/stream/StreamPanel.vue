@@ -1,20 +1,25 @@
 <template>
   <div class="stream-panel" v-if="model">
-    <v-card style="background-color: lightblue">
+    <v-card style="">
       <v-card-title class="text-center stream-title">
         {{ model.name }}
       </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="8">
+          <v-col xs="12" md="8">
             <v-row>
-              <v-col cols="12" class="reset-bot-space">
+              <v-col lg="12" class="reset-bot-space">
                 <stream-live :stream-id="model.id" />
               </v-col>
-              <v-col cols="8" class="reset-top-space">
+              <v-col lg="8" sm="6" xs="12" class="reset-top-space">
                 <stream-description style="margin-top: 10px" :model="model" />
               </v-col>
-              <v-col cols="4" class="reset-top-space reset-left-space">
+              <v-col
+                lg="4"
+                sm="6"
+                xs="12"
+                class="reset-top-space reset-left-space"
+              >
                 <stream-channel-description
                   style="margin-top: 10px"
                   :model="model.channel"
@@ -22,8 +27,8 @@
               </v-col>
             </v-row>
           </v-col>
-          <v-col cols="4">
-            <stream-chat :stream-id="model.id" />
+          <v-col xs="12" md="4">
+            <stream-chat v-if="model.id" :stream-id="model.id" />
           </v-col>
         </v-row>
       </v-card-text>
@@ -74,4 +79,6 @@ export default class StreamPanel extends Vue {
     padding: 25px;
   }
 }
+//background-color: lightblue
+//background-color: #5eb5e0
 </style>

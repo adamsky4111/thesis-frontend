@@ -73,6 +73,17 @@ const user: Array<RouteConfig> = [
       layout: Layout.LOGGED_USER,
     },
   },
+
+  {
+    path: "/channels/favorite",
+    name: "channels_favorite",
+    component: () => import("@/views/Account/SubscribedChannelsView.vue"),
+    meta: {
+      auth: true,
+      role: [UserRole.ROLE_USER],
+      layout: Layout.LOGGED_USER,
+    },
+  },
 ];
 
 export default user;

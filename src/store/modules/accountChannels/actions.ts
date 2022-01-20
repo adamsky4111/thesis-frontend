@@ -7,6 +7,7 @@ import api from "@/api/user";
 import { SettingsModel } from "@/model/SettingsModel";
 import { ChannelModel } from "@/model/ChannelModel";
 import { AccountChannelsFilter } from "@/model/Filter/AccountChannels/AccountChannelsFilter";
+import { ChannelSubscribe } from "@/model/ChannelSubscribe";
 
 export interface Actions {
   [ActionTypes.CREATE](
@@ -25,6 +26,7 @@ export interface Actions {
     { commit }: AugmentedActionContext,
     payload: AccountChannelsFilter
   ): void;
+  [ActionTypes.FETCH_SUBSCRIBED]({ commit }: AugmentedActionContext): void;
 }
 
 type AugmentedActionContext = {
@@ -53,6 +55,20 @@ export const actions: ActionTree<State, RootState> & Actions = {
         commit(MutationTypes.SET_ITEMS, data);
         commit(MutationTypes.SET_TOTAL, response.data.total);
         commit(MutationTypes.SET_PAGES, response.data.pages);
+      }
+    });
+  },
+  async [ActionTypes.FETCH_SUBSCRIBED]({ commit }) {
+    commit(MutationTypes.SET_SUBSCRIBED_IS_LOADING, true);
+    await api.ACCOUNT_CHANNELS.subscribed().then((response) => {
+      if (response.status) {
+        const data = response.data.items.map((item) => {
+          return new ChannelSubscribe(item);
+        });
+        commit(MutationTypes.SET_SUBSCRIBED_ITEMS, data);
+        commit(MutationTypes.SET_SUBSCRIBED_TOTAL, response.data.total);
+        commit(MutationTypes.SET_SUBSCRIBED_PAGES, response.data.pages);
+        commit(MutationTypes.SET_SUBSCRIBED_IS_LOADING, false);
       }
     });
   },

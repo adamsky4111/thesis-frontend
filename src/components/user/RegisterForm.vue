@@ -22,6 +22,7 @@
                   required
                   outlined
                   v-model="user.username"
+                  :error-messages="errors.username"
                   lazy-validation
                 >
                 </v-text-field>
@@ -31,6 +32,7 @@
                   required
                   outlined
                   v-model="user.email"
+                  :error-messages="errors.email"
                 >
                 </v-text-field>
                 <v-text-field
@@ -129,6 +131,10 @@ import api from "@/api/user";
     form: new UserRegisterForm(),
     showPersonal: false,
     send: false,
+    errors: {
+      email: [],
+      username: [],
+    },
   }),
   computed: {
     user() {
@@ -147,11 +153,11 @@ import api from "@/api/user";
       if (valid) {
         api.SECURITY.register(this.$data.form.model.createArrayParams()).then(
           (response) => {
-            if (response.status) {
-              console.log("success");
+            console.log(response.data);
+            if (response.status && !response.data.errors) {
               this.send = true;
             } else {
-              console.log("fail");
+              this.errors = response.data.errors;
             }
           }
         );

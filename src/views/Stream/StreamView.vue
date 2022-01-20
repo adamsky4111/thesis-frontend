@@ -11,6 +11,7 @@ import { Component } from "vue-property-decorator";
 import { StreamModel } from "@/model/StreamModel";
 import StreamPanel from "@/components/stream/StreamPanel.vue";
 import api from "@/api/user";
+import { ActionTypes } from "@/store/modules/socket/PublicTypes";
 
 @Component({
   components: { StreamPanel, LoadingSpin },
@@ -24,6 +25,11 @@ export default class StreamView extends Vue {
     api.STREAM.get(+this.$route.params.id).then((response) => {
       this.stream = response.data.stream;
       this.loading = false;
+      if (this.stream) {
+        this.$store.dispatch(ActionTypes.CONNECT_AS_VIEWER, {
+          streamId: this.stream.id,
+        });
+      }
     });
   }
 }

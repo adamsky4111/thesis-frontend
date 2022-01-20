@@ -2,7 +2,6 @@
   <div class="account-edit">
     <v-row>
       <v-col align="center">
-        <h1>{{ $translation("account.my_account.header") }}</h1>
         <edit-profile-form @onEdit="goToAccount" />
       </v-col>
     </v-row>

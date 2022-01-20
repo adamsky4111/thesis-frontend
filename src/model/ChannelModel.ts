@@ -8,6 +8,7 @@ export class ChannelModel implements IModel, IValidator {
   public description = "";
   public default = false;
   public settings?: SettingsModel | null;
+  public subscribed = false;
   validator: Record<never, Array<never>>;
 
   public constructor(data?: Record<any, any>) {

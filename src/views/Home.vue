@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <v-row>
-      <v-col align="center">
-        <div class="stream-list">
+      <v-col align="center" class="">
+        <div class="stream-list page-wrapper">
           <stream-list />
         </div>
       </v-col>

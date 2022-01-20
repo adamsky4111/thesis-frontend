@@ -3,7 +3,7 @@
     <v-row>
       <v-col
         align="center"
-        class="register-form-wrapper"
+        class="register-form-wrapper page-wrapper"
         style="margin-bottom: 500px"
       >
         <verify-handler />

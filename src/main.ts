@@ -6,17 +6,18 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import translations from "@/plugins/translation/translations";
 import "./style/main.scss";
-import moment from "@/plugins/moment/moment";
 import wysiwyg from "vue-wysiwyg";
 import "vue-wysiwyg/dist/vueWysiwyg.css";
 import { WebCam } from "vue-web-cam";
+import VueMoment from "vue-moment";
+import moment from "moment";
+
+require("moment/locale/pl");
 Vue.use(wysiwyg, {});
 Vue.use(WebCam);
-
 Vue.config.productionTip = false;
-
 Vue.use(translations);
-Vue.use(moment);
+Vue.use(VueMoment, { moment });
 new Vue({
   router,
   store,

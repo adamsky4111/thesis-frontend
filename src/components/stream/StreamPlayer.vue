@@ -58,3 +58,8 @@ require("videojs-contrib-hls/dist/videojs-contrib-hls.js");
 })
 export default class StreamPlayer extends Vue {}
 </script>
+<style scoped>
+.vjs-custom-skin {
+  background: black;
+}
+</style>

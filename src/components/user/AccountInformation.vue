@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="600">
+  <v-card max-width="600" class="account-information-card">
     <v-card-title> </v-card-title>
     <v-card-text>
       <v-container>

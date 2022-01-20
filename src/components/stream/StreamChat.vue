@@ -1,13 +1,18 @@
 <template>
   <div class="stream-chat">
-    <v-card style="background-color: #5eb5e0">
+    <v-card>
       <v-card-title class="text-center">
         {{ $translation("stream.chat") }}
       </v-card-title>
       <v-card-text>
-        <v-container class="stream-chat">
+        <v-container>
           <v-row>
-            <v-col cols="12" align="center" justify="center">
+            <v-col
+              class="stream-chat__box"
+              cols="12"
+              align="center"
+              justify="center"
+            >
               <message
                 :owner="message.owner"
                 v-for="message in data.messages"
@@ -49,6 +54,7 @@ import Message from "@/components/stream/Message.vue";
 import { MessageModel } from "@/model/MessageModel";
 import api from "@/api/user";
 import { GetterTypes } from "@/store/modules/auth/AuthStoreTypes";
+import { ActionTypes } from "@/store/modules/socket/PublicTypes";
 
 @Component({
   components: { Message },
@@ -68,18 +74,23 @@ export default class StreamChat extends Vue {
 
   mounted(): void {
     this.loadChat();
-    window.setInterval(() => {
-      this.loadChat();
-    }, 2000);
+    const handler = async (data) => {
+      const message = new MessageModel(data.message);
+      console.log(message);
+      this.data.messages.push(message);
+    };
+    this.$store.dispatch(ActionTypes.HANDLE_EVENT, {
+      event: "chat_message",
+      callback: handler,
+    });
   }
 
   sendMessage(): void {
-    const message = new MessageModel();
-    message.text = this.text;
-    api.CHAT.addMessage(message, this.streamId).then((response) => {
-      this.text = "";
-      this.loadChat();
+    this.$store.dispatch(ActionTypes.ADD_CHAT_MESSAGE, {
+      event: "chat_message",
+      message: this.text,
     });
+    this.text = "";
   }
 
   loadChat(): void {
@@ -94,7 +105,10 @@ export default class StreamChat extends Vue {
 <style scoped lang="scss">
 .stream {
   &-chat {
-    background-color: lightblue;
+    &__box {
+      height: 500px;
+      overflow-y: scroll;
+    }
   }
   &-new-message {
     margin-top: 15px;

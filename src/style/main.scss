@@ -17,8 +17,20 @@
   padding-left: 0;
 }
 
+.page-wrapper {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
+.wrapper {
+  transition: 0.5s;
+}
 
+.wrapper--menu-open {
+  margin-right: 256px;
+}
+
+@import "variables";
 @import "account.scss";
 @import "login.scss";
 @import "register.scss";

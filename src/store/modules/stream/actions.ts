@@ -4,15 +4,11 @@ import { ActionTypes } from "./types";
 import { Mutations } from "./mutations";
 import { RootState } from "@/store/types";
 import api from "@/api/user";
-import { SearchFilter } from "@/model/Filter/Search/SearchFilter";
 import { MutationTypes } from "@/store/modules/accountChannels/types";
 import { StreamModel } from "@/model/StreamModel";
 
 export interface Actions {
-  [ActionTypes.SEARCH](
-    { commit }: AugmentedActionContext,
-    payload: SearchFilter
-  ): void;
+  [ActionTypes.SEARCH]({ commit }: AugmentedActionContext): void;
 }
 
 type AugmentedActionContext = {
@@ -23,8 +19,8 @@ type AugmentedActionContext = {
 } & Omit<ActionContext<State, RootState>, "commit">;
 
 export const actions: ActionTree<State, RootState> & Actions = {
-  async [ActionTypes.SEARCH]({ commit }, payload) {
-    await api.STREAM.list(payload).then((response) => {
+  async [ActionTypes.SEARCH]({ commit, state }) {
+    await api.STREAM.list(state.filter).then((response) => {
       if (response.status) {
         const data = response.data.items.map((item) => {
           return new StreamModel(item);

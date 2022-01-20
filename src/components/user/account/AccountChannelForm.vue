@@ -16,12 +16,13 @@
             <v-row>
               <v-col align="center" justify="center">
                 <v-form
+                  class="mt-5"
                   ref="settingsForm"
-                  class="mt-12"
                   v-model="form.valid"
                   lazy-validation
                 >
                   <v-text-field
+                    class="input"
                     :label="$translation('account.channels.name')"
                     required
                     outlined
@@ -40,6 +41,7 @@
                   >
                   </wysiwyg>
                   <v-select
+                    class="input"
                     :label="$translation('account.channels.choose_settings')"
                     v-model="model.settings"
                     :items="settings"
@@ -49,6 +51,7 @@
                   >
                   </v-select>
                   <v-text-field
+                    class="input"
                     :label="$translation('account.settings.age_allowed')"
                     required
                     outlined
@@ -59,6 +62,7 @@
                   >
                   </v-text-field>
                   <v-text-field
+                    class="input"
                     :label="$translation('account.settings.name')"
                     required
                     outlined
@@ -191,5 +195,8 @@ export default class AccountChannelForm extends Vue {
 <style scoped>
 .v-text-field {
   width: 400px;
+}
+.input {
+  width: 100%;
 }
 </style>

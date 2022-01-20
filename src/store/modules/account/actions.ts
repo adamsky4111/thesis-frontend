@@ -6,6 +6,7 @@ import { RootState } from "@/store/types";
 import api from "@/api/user";
 import { SettingsModel } from "@/model/SettingsModel";
 import { SettingsFilter } from "@/model/Filter/Settings/SettingsFilter";
+import { ChannelModel } from "@/model/ChannelModel";
 
 export interface Actions {
   [ActionTypes.CREATE](
@@ -23,6 +24,14 @@ export interface Actions {
   [ActionTypes.SEARCH](
     { commit }: AugmentedActionContext,
     payload: SettingsFilter
+  ): void;
+  [ActionTypes.SUBSCRIBE_CHANNEL](
+    { commit }: AugmentedActionContext,
+    payload: ChannelModel
+  ): void;
+  [ActionTypes.UNSUBSCRIBE_CHANNEL](
+    { commit }: AugmentedActionContext,
+    payload: ChannelModel
   ): void;
 }
 
@@ -66,5 +75,11 @@ export const actions: ActionTree<State, RootState> & Actions = {
         commit(MutationTypes.SET_PAGES, response.data.pages);
       }
     });
+  },
+  async [ActionTypes.SUBSCRIBE_CHANNEL]({ commit }, payload) {
+    return await api.ACCOUNT_CHANNELS.subscribe(payload);
+  },
+  async [ActionTypes.UNSUBSCRIBE_CHANNEL]({ commit }, payload) {
+    return await api.ACCOUNT_CHANNELS.unsubscribe(payload);
   },
 };

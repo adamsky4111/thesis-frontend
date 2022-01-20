@@ -33,6 +33,9 @@
                     </v-text-field>
                   </v-col>
                   <v-col cols="12">
+                    <dropzone />
+                  </v-col>
+                  <v-col cols="12">
                     <wysiwyg
                       :label="$translation('account.stream.description')"
                       required
@@ -126,9 +129,10 @@ import { StreamForm } from "@/model/StreamForm";
 import TimeDialogPicker from "@/components/common/TimeDialogPicker.vue";
 import DateDialogPicker from "@/components/common/DateDialogPicker.vue";
 import { ActionTypes } from "@/store/modules/accountStreams/PublicTypes";
+import Dropzone from "@/components/common/Dropzone.vue";
 
 @Component({
-  components: { LoadingSpin, DateDialogPicker, TimeDialogPicker },
+  components: { Dropzone, LoadingSpin, DateDialogPicker, TimeDialogPicker },
 })
 export default class AccountStreamForm extends Vue {
   @Prop({ default: false })
@@ -219,6 +223,6 @@ export default class AccountStreamForm extends Vue {
 </script>
 <style scoped>
 .v-text-field {
-  width: 400px;
+  /*width: 400px;*/
 }
 </style>

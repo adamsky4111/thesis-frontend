@@ -3,6 +3,8 @@ export enum ActionTypes {
   CREATE = "account/CREATE",
   REMOVE = "account/REMOVE",
   SEARCH = "account/SEARCH",
+  SUBSCRIBE_CHANNEL = "account/SUBSCRIBE_CHANNEL",
+  UNSUBSCRIBE_CHANNEL = "account/UNSUBSCRIBE_CHANNEL",
 }
 
 export enum GetterTypes {

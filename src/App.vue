@@ -14,6 +14,7 @@ import Vue from "vue";
 import LoggedLayout from "@/components/layout/LoggedLayout.vue";
 import DefaultLayout from "@/components/layout/DefaultLayout.vue";
 import { GetterTypes } from "@/store/modules/auth/types";
+import { Layout } from "@/router/types";
 
 export default Vue.extend({
   components: { LoggedLayout, DefaultLayout },
@@ -21,7 +22,8 @@ export default Vue.extend({
   computed: {
     layout() {
       return (
-        (this.$route.meta.layout || this.$store.getters[GetterTypes.IS_LOGGED]
+        (this.$route.meta.layout === Layout.LOGGED_USER ||
+        this.$store.getters[GetterTypes.IS_LOGGED]
           ? "logged"
           : "default") + "-layout"
       );

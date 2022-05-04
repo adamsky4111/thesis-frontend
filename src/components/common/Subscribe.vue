@@ -7,6 +7,8 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { ChannelModel } from "@/model/ChannelModel";
 import { ActionTypes } from "@/store/modules/account/AccountStoreTypes";

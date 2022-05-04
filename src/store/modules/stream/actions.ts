@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { ActionTree, ActionContext } from "vuex";
 import { State } from "./state";
 import { ActionTypes } from "./types";

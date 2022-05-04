@@ -119,6 +119,8 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Component, Vue } from "vue-property-decorator";
 import { UserRegisterForm } from "@/model/UserRegisterForm";
 import { VForm } from "@/type/Form";

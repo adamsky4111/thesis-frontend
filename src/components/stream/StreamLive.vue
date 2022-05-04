@@ -22,6 +22,8 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Component, Prop, Vue } from "vue-property-decorator";
 import StreamPlayer from "@/components/stream/StreamPlayer.vue";
 import { ActionTypes } from "@/store/modules/socket/PublicTypes";

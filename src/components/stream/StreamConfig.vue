@@ -62,6 +62,8 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Component, Prop, Vue } from "vue-property-decorator";
 import { GetterTypes } from "@/store/modules/accountStreams/PublicTypes";
 import { GetterTypes as AuthGetterTypes } from "@/store/modules/auth/AuthStoreTypes";

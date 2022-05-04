@@ -48,6 +48,8 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { Component, Vue } from "vue-property-decorator";
 import { GetterTypes, ActionTypes } from "@/store/modules/auth/AuthStoreTypes";
 import { ActionTypes as SettingsActionTypes } from "@/store/modules/settings/PublicTypes";

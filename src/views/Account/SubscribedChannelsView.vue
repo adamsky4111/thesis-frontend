@@ -21,7 +21,6 @@ import AccountSubscribeChannelList from "@/components/user/account/AccountSubscr
       this.$router.push("/account");
     },
   },
-  mounted() {},
 })
 export default class EditAccountView extends Vue {}
 </script>

@@ -159,7 +159,7 @@ export default class StreamConfig extends Vue {
       this.stopCameraStream();
     } else {
       this.isCameraOpen = true;
-      this.socket = new WebSocket("ws://localhost:9090");
+      this.socket = new WebSocket(process.env.VUE_APP_SOCKET_URL);
       const socket = this.socket;
       const token = this.$store.getters[AuthGetterTypes.GET_TOKEN];
       this.socket.addEventListener("open", () => {
@@ -235,9 +235,9 @@ export default class StreamConfig extends Vue {
           mediaRecorder.start();
         }, 2000);
       })
-      .catch(() => {
+      .catch((error) => {
         this.isLoading = false;
-        alert("Error");
+        console.log(error);
       });
   }
 
